@@ -98,4 +98,48 @@ class APIManager {
         return Constituency(constituencyId: id)
     }
     
+    class func getConstituencies() -> Array<Constituency> {
+        // construct a blank mutable array...
+        var array:Array<Constituency> = Array<Constituency>()
+        
+        let urlString = "http://mapit.mysociety.org/areas/WMC"
+        
+        // perform request...
+        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
+            //println("Data: ")
+            //println(data)
+            // data is a huge dictionary, where keys are id's, objects are dictionaries - these dictionaries contain a key "name" - a human readable name string...
+            let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = data as Dictionary<String, Dictionary<String, AnyObject>>
+            
+            let dataKeys:Array<String> = dataSet.keys.array;
+            
+            // lol, range literals to the extreme... (subtracting 1 to avoid off by one!!)
+            for i in 0...(dataKeys.count - 1) {
+                // get ID from the key...
+                var constituencyId:Int = dataKeys[i].toInt()!
+                
+                // get associated name info from the object dict's "name" key...
+                var constituencyName:String = dataSet.values.array[i]["name"] as String
+                
+                // instanciate our Constituency
+                var constituency:Constituency = Constituency(constituencyId: constituencyId)
+                
+                // set name too since we have one in this case...
+                constituency.name = constituencyName
+                
+                // and add it to our array...
+                array.append(constituency)
+                
+                println("Adding " + constituencyName)
+            }
+
+            
+        }
+
+        
+        // return our array now that it's full...
+        return array;
+    }
+    
+    
 }

@@ -12,7 +12,6 @@
 		BA33B2BA1ACAB4FF00170D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2B81ACAB4FF00170D29 /* Main.storyboard */; };
 		BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */; };
 		BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */; };
-		BA33B2CB1ACAB50000170D29 /* who_can_i_vote_forTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */; };
 		BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2E71ACAB71900170D29 /* Alamofire.swift */; };
 		BA6D49291ACB1977003B004A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49281ACB1977003B004A /* README.md */; };
 		BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492A1ACB1995003B004A /* LICENSE.md */; };
@@ -23,16 +22,6 @@
 		BA6D497E1ACB2EA8003B004A /* PartyColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497D1ACB2EA8003B004A /* PartyColours.swift */; };
 		BA6D49801ACB2F7B003B004A /* String+ContainsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		BA33B2C51ACAB50000170D29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA33B2A71ACAB4FF00170D29 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA33B2AE1ACAB4FF00170D29;
-			remoteInfo = "who-can-i-vote-for";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BA33B2E51ACAB6BA00170D29 /* Copy Frameworks */ = {
@@ -55,9 +44,6 @@
 		BA33B2B91ACAB4FF00170D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BA33B2BE1ACAB4FF00170D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		BA33B2C41ACAB50000170D29 /* who-can-i-vote-forTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "who-can-i-vote-forTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA33B2C91ACAB50000170D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = who_can_i_vote_forTests.swift; sourceTree = "<group>"; };
 		BA33B2E71ACAB71900170D29 /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire/Source/Alamofire.swift; sourceTree = "<group>"; };
 		BA6D49281ACB1977003B004A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA6D492A1ACB1995003B004A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -77,13 +63,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA33B2C11ACAB50000170D29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,7 +74,6 @@
 				BA6D49281ACB1977003B004A /* README.md */,
 				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
 				BA33B2B11ACAB4FF00170D29 /* who-can-i-vote-for */,
-				BA33B2C71ACAB50000170D29 /* who-can-i-vote-forTests */,
 				BA33B2B01ACAB4FF00170D29 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				BA33B2AF1ACAB4FF00170D29 /* who-can-i-vote-for.app */,
-				BA33B2C41ACAB50000170D29 /* who-can-i-vote-forTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,23 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				BA33B2B31ACAB4FF00170D29 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BA33B2C71ACAB50000170D29 /* who-can-i-vote-forTests */ = {
-			isa = PBXGroup;
-			children = (
-				BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */,
-				BA33B2C81ACAB50000170D29 /* Supporting Files */,
-			);
-			path = "who-can-i-vote-forTests";
-			sourceTree = "<group>";
-		};
-		BA33B2C81ACAB50000170D29 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BA33B2C91ACAB50000170D29 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -181,24 +141,6 @@
 			productReference = BA33B2AF1ACAB4FF00170D29 /* who-can-i-vote-for.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BA33B2C31ACAB50000170D29 /* who-can-i-vote-forTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA33B2D11ACAB50000170D29 /* Build configuration list for PBXNativeTarget "who-can-i-vote-forTests" */;
-			buildPhases = (
-				BA33B2C01ACAB50000170D29 /* Sources */,
-				BA33B2C11ACAB50000170D29 /* Frameworks */,
-				BA33B2C21ACAB50000170D29 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA33B2C61ACAB50000170D29 /* PBXTargetDependency */,
-			);
-			name = "who-can-i-vote-forTests";
-			productName = "who-can-i-vote-forTests";
-			productReference = BA33B2C41ACAB50000170D29 /* who-can-i-vote-forTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,10 +152,6 @@
 				TargetAttributes = {
 					BA33B2AE1ACAB4FF00170D29 = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					BA33B2C31ACAB50000170D29 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = BA33B2AE1ACAB4FF00170D29;
 					};
 				};
 			};
@@ -231,7 +169,6 @@
 			projectRoot = "";
 			targets = (
 				BA33B2AE1ACAB4FF00170D29 /* who-can-i-vote-for */,
-				BA33B2C31ACAB50000170D29 /* who-can-i-vote-forTests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,13 +181,6 @@
 				BA33B2BA1ACAB4FF00170D29 /* Main.storyboard in Resources */,
 				BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */,
 				BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA33B2C21ACAB50000170D29 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,23 +205,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA33B2C01ACAB50000170D29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA33B2CB1ACAB50000170D29 /* who_can_i_vote_forTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BA33B2C61ACAB50000170D29 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA33B2AE1ACAB4FF00170D29 /* who-can-i-vote-for */;
-			targetProxy = BA33B2C51ACAB50000170D29 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BA33B2B81ACAB4FF00170D29 /* Main.storyboard */ = {
@@ -412,40 +326,6 @@
 			};
 			name = Release;
 		};
-		BA33B2D21ACAB50000170D29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "who-can-i-vote-forTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/who-can-i-vote-for.app/who-can-i-vote-for";
-			};
-			name = Debug;
-		};
-		BA33B2D31ACAB50000170D29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "who-can-i-vote-forTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/who-can-i-vote-for.app/who-can-i-vote-for";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -463,15 +343,6 @@
 			buildConfigurations = (
 				BA33B2CF1ACAB50000170D29 /* Debug */,
 				BA33B2D01ACAB50000170D29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA33B2D11ACAB50000170D29 /* Build configuration list for PBXNativeTarget "who-can-i-vote-forTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA33B2D21ACAB50000170D29 /* Debug */,
-				BA33B2D31ACAB50000170D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
