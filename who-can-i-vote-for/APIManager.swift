@@ -16,7 +16,7 @@ class APIManager {
     
     class func getConstituencyWithPostcode(postcodeString: String!) -> Constituency! {
         // concatenate our URL together.
-        let urlString = "http://mapit.mysociety.org/postcode/" + postcodeString
+        let urlString = "https://mapit.mysociety.org/postcode/" + postcodeString
         
         var id:Int!
         
@@ -60,7 +60,7 @@ class APIManager {
         let longitude:Double = coordinate.longitude as Double
         
         // NOTE: Longitude comes BEFORE Latitude for this API (unlike anything else in existance ever).
-        let urlString = String(format: "http://mapit.mysociety.org/point/4326/%f,%f?type=WMC", longitude, latitude)
+        let urlString = String(format: "https://mapit.mysociety.org/point/4326/%f,%f?type=WMC", longitude, latitude)
         println("urlString: " + urlString)
         
         var id:Int!
