@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2B41ACAB4FF00170D29 /* AppDelegate.swift */; };
-		BA33B2B71ACAB4FF00170D29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2B61ACAB4FF00170D29 /* ViewController.swift */; };
+		BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */; };
 		BA33B2BA1ACAB4FF00170D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2B81ACAB4FF00170D29 /* Main.storyboard */; };
 		BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */; };
 		BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */; };
@@ -43,7 +43,7 @@
 		BA33B2AF1ACAB4FF00170D29 /* who-can-i-vote-for.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "who-can-i-vote-for.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA33B2B31ACAB4FF00170D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA33B2B41ACAB4FF00170D29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA33B2B61ACAB4FF00170D29 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BA33B2B91ACAB4FF00170D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BA33B2BE1ACAB4FF00170D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				BA33B2B41ACAB4FF00170D29 /* AppDelegate.swift */,
-				BA33B2B61ACAB4FF00170D29 /* ViewController.swift */,
+				BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */,
 				BA33B2B81ACAB4FF00170D29 /* Main.storyboard */,
 				BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */,
 				BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */,
@@ -230,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
-				BA33B2B71ACAB4FF00170D29 /* ViewController.swift in Sources */,
+				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +425,7 @@
 				BA33B2D01ACAB50000170D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA33B2D11ACAB50000170D29 /* Build configuration list for PBXNativeTarget "who-can-i-vote-forTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +434,7 @@
 				BA33B2D31ACAB50000170D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
