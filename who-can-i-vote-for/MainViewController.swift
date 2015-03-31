@@ -33,6 +33,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // and start updates...
         locationManager.startUpdatingLocation()
         
+        //APIManager.getConstituencyWithPostcode("NE17RU")
+        APIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608))
     }
 
     override func didReceiveMemoryWarning() {

@@ -119,7 +119,6 @@
 				BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */,
 				BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */,
 				BA33B2B21ACAB4FF00170D29 /* Supporting Files */,
-				BA6D49761ACB2C93003B004A /* APIManager.swift */,
 				BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */,
 			);
 			path = "who-can-i-vote-for";
@@ -153,6 +152,7 @@
 		BA6D497A1ACB2E4F003B004A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA6D49761ACB2C93003B004A /* APIManager.swift */,
 				BA6D49781ACB2D9D003B004A /* Constituency.swift */,
 				BA6D497B1ACB2E5C003B004A /* Candidate.swift */,
 				BA6D497D1ACB2EA8003B004A /* PartyColours.swift */,

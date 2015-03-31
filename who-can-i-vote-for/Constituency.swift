@@ -13,6 +13,9 @@ class Constituency {
     // the ID number of the Constituency when used within the YourNextMP API
     let idNumber:Int!
     
+    // an optional human readable name will be used in certain cases...
+    var name:String!
+    
     init(constituencyId:Int!){
         // set up our ID to whatever we've been passed...
         idNumber = constituencyId
