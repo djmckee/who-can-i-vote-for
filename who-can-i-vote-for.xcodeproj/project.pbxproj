@@ -13,6 +13,7 @@
 		BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */; };
 		BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */; };
 		BA33B2CB1ACAB50000170D29 /* who_can_i_vote_forTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */; };
+		BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2E71ACAB71900170D29 /* Alamofire.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BA33B2E51ACAB6BA00170D29 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BA33B2AF1ACAB4FF00170D29 /* who-can-i-vote-for.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "who-can-i-vote-for.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA33B2B31ACAB4FF00170D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +50,7 @@
 		BA33B2C41ACAB50000170D29 /* who-can-i-vote-forTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "who-can-i-vote-forTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA33B2C91ACAB50000170D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = who_can_i_vote_forTests.swift; sourceTree = "<group>"; };
+		BA33B2E71ACAB71900170D29 /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire/Source/Alamofire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +74,7 @@
 		BA33B2A61ACAB4FF00170D29 = {
 			isa = PBXGroup;
 			children = (
+				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
 				BA33B2B11ACAB4FF00170D29 /* who-can-i-vote-for */,
 				BA33B2C71ACAB50000170D29 /* who-can-i-vote-forTests */,
 				BA33B2B01ACAB4FF00170D29 /* Products */,
@@ -122,6 +138,7 @@
 				BA33B2AB1ACAB4FF00170D29 /* Sources */,
 				BA33B2AC1ACAB4FF00170D29 /* Frameworks */,
 				BA33B2AD1ACAB4FF00170D29 /* Resources */,
+				BA33B2E51ACAB6BA00170D29 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* ViewController.swift in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
 			);
@@ -289,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -325,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -337,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "who-can-i-vote-for/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -347,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "who-can-i-vote-for/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
