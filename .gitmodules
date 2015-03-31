@@ -1,3 +1,6 @@
 [submodule "Alamofire"]
 	path = Alamofire
 	url = https://github.com/Alamofire/Alamofire.git
+[submodule "Reachability"]
+	path = Reachability
+	url = git@github.com:ashleymills/Reachability.swift.git
