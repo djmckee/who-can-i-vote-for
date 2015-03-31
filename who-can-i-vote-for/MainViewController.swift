@@ -59,6 +59,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             return
         }
+        
+        // we definitely have a location by this point... use it!
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
