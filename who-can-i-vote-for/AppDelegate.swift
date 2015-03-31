@@ -17,6 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Start reachability warnings (so that they're app-wide)
+        let reachability = Reachability.reachabilityForInternetConnection()
+        
+        reachability.whenUnreachable = { reachability in
+            println("Internet is not reachable :'(")
+            // alert the user...
+            let internetConnectionAlert = UIAlertView()
+            internetConnectionAlert.title = "No internet connection"
+            internetConnectionAlert.message = "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again."
+            internetConnectionAlert.addButtonWithTitle("Okay")
+            internetConnectionAlert.show()
+        }
+        
+        reachability.startNotifier()
+        
         return true
     }
 

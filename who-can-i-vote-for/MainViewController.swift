@@ -50,11 +50,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         if currentLocation == nil {
             // alert the user then return.
             println("no current location!")
+            
             let locationAlert = UIAlertView()
             locationAlert.title = "No location found"
             locationAlert.message = "We're sorry but we can't find your current location at the moment. Please try another method."
             locationAlert.addButtonWithTitle("Okay")
             locationAlert.show()
+            
             return
         }
     }
