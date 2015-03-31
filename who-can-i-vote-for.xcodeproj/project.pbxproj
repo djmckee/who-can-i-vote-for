@@ -14,6 +14,8 @@
 		BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */; };
 		BA33B2CB1ACAB50000170D29 /* who_can_i_vote_forTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */; };
 		BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2E71ACAB71900170D29 /* Alamofire.swift */; };
+		BA6D49291ACB1977003B004A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49281ACB1977003B004A /* README.md */; };
+		BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492A1ACB1995003B004A /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		BA33B2C91ACAB50000170D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA33B2CA1ACAB50000170D29 /* who_can_i_vote_forTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = who_can_i_vote_forTests.swift; sourceTree = "<group>"; };
 		BA33B2E71ACAB71900170D29 /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire/Source/Alamofire.swift; sourceTree = "<group>"; };
+		BA6D49281ACB1977003B004A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA6D492A1ACB1995003B004A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 		BA33B2A61ACAB4FF00170D29 = {
 			isa = PBXGroup;
 			children = (
+				BA6D492A1ACB1995003B004A /* LICENSE.md */,
+				BA6D49281ACB1977003B004A /* README.md */,
 				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
 				BA33B2B11ACAB4FF00170D29 /* who-can-i-vote-for */,
 				BA33B2C71ACAB50000170D29 /* who-can-i-vote-forTests */,
@@ -229,8 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
+				BA6D49291ACB1977003B004A /* README.md in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
