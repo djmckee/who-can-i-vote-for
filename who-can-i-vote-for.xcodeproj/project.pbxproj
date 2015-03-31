@@ -16,6 +16,7 @@
 		BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2E71ACAB71900170D29 /* Alamofire.swift */; };
 		BA6D49291ACB1977003B004A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49281ACB1977003B004A /* README.md */; };
 		BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492A1ACB1995003B004A /* LICENSE.md */; };
+		BA6D492E1ACB1A14003B004A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492D1ACB1A14003B004A /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		BA33B2E71ACAB71900170D29 /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Alamofire/Source/Alamofire.swift; sourceTree = "<group>"; };
 		BA6D49281ACB1977003B004A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA6D492A1ACB1995003B004A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		BA6D492D1ACB1A14003B004A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		BA33B2A61ACAB4FF00170D29 = {
 			isa = PBXGroup;
 			children = (
+				BA6D492C1ACB1A14003B004A /* Reachability.swift */,
 				BA6D492A1ACB1995003B004A /* LICENSE.md */,
 				BA6D49281ACB1977003B004A /* README.md */,
 				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
@@ -132,6 +135,14 @@
 				BA33B2C91ACAB50000170D29 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA6D492C1ACB1A14003B004A /* Reachability.swift */ = {
+			isa = PBXGroup;
+			children = (
+				BA6D492D1ACB1A14003B004A /* Reachability.swift */,
+			);
+			path = Reachability.swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 			files = (
 				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
+				BA6D492E1ACB1A14003B004A /* Reachability.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
 				BA6D49291ACB1977003B004A /* README.md in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
