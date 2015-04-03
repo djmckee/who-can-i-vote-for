@@ -28,10 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // alert the user...            
             let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .Alert)
             
-            let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-                // nothing to do really.
-            }
-            
+            let cancelAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
             alertController.addAction(cancelAction)
             
             self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)

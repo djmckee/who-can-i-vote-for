@@ -114,9 +114,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .Alert)
         
         // and a simple cancel button too!
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
-            // do nothing really.
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
         alertController.addAction(cancelAction)
         
         // we need the text field/it's behaviour set up...
@@ -157,7 +155,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // bit of loading UI...
-        SwiftSpinner.show("Loading constituencies...", animated: true)
+        SwiftSpinner.show("Loading constituencies", animated: true)
         
         // load ConstituencyTableViewController (after getting constituencies!)
         YourNextMPAPIManager.getConstituencies { (c) -> () in
@@ -175,9 +173,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // a generic 'not valid constituency' warning - ask the user to try again in an alert.
         let alertController = UIAlertController(title: "Cannot find constituency", message: "We're sorry but we can't find your constituency. Please try another method of locating it, or choose it from the list instead.", preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-            // nothing to do really.
-        }
+        let cancelAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)        
         
         alertController.addAction(cancelAction)
         
@@ -214,10 +210,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             // alert the user and return false...
             let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .Alert)
             
-            let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-                // nothing to do really.
-            }
-            
+            let cancelAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+
             alertController.addAction(cancelAction)
             
             self.presentViewController(alertController, animated: true, completion: nil)

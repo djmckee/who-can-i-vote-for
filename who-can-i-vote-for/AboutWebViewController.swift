@@ -36,10 +36,8 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
             let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .Alert)
             
             
-            let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-                // nothing to do really.
-            }
-            
+            let cancelAction = UIAlertAction(title: "No", style: .Default, handler: nil)
+
             alertController.addAction(cancelAction)
             
             
