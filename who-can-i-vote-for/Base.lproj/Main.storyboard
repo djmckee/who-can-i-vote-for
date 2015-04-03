@@ -200,6 +200,9 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kc8-op-1Zw" id="9Iv-fG-muU"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Iy-bp4">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
@@ -258,6 +261,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="sQh-rP-dEL" id="Dmg-zL-x7N"/>
+                        <outlet property="tableView" destination="1gY-Iy-bp4" id="IGn-V5-RfF"/>
                         <segue destination="E6f-gg-iia" kind="show" identifier="constituencyCandidateSegue" id="jCT-hs-ct6"/>
                     </connections>
                 </viewController>
@@ -284,13 +289,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="BkO-Nw-Md3"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aoa-wG-am7">
                                             <rect key="frame" x="8" y="64" width="584" height="22"/>
-                                            <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>

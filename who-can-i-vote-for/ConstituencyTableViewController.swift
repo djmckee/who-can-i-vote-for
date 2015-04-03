@@ -8,12 +8,17 @@
 
 import UIKit
 
-class ConstituencyTableViewController: UIViewController {
+class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
 
-    //TODO: Make list searchable
+    @IBOutlet weak var tableView:UITableView?
+    @IBOutlet weak var searchBar:UISearchBar?
     
-    var constituencyArray:Array<Constituency> = []
+    var isSearching:Bool = false
+    
+    var constituencyArray:Array<Constituency>! = []
     var candidatesList:Array<Candidate>! = []
+    var searchingArray:Array<Constituency>! = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +41,10 @@ class ConstituencyTableViewController: UIViewController {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
+        if isSearching {
+            return searchingArray.count
+        }
+        
         return constituencyArray.count
     }
 
@@ -43,8 +52,14 @@ class ConstituencyTableViewController: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ConstituencyCell", forIndexPath: indexPath) as ConstituencyTableViewCell
 
         // Configure the cell...
+        
+        if isSearching {
+            cell.constituencyLabel?.text = searchingArray[indexPath.row].name
 
-        cell.constituencyLabel?.text = constituencyArray[indexPath.row].name
+        } else {
+            cell.constituencyLabel?.text = constituencyArray[indexPath.row].name
+
+        }
         
         return cell
     }
@@ -54,7 +69,14 @@ class ConstituencyTableViewController: UIViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         // get tapped constituency...
-        let chosen:Constituency = constituencyArray[indexPath.row]
+        var chosen:Constituency
+        
+        if isSearching {
+            chosen = searchingArray[indexPath.row]
+        } else {
+            chosen = constituencyArray[indexPath.row]
+        }
+        
         println("chosen " + chosen.name)
         
         // get candidates... update loading UI too
@@ -79,6 +101,50 @@ class ConstituencyTableViewController: UIViewController {
             var viewController:CandidateTableViewController = segue.destinationViewController as CandidateTableViewController
             viewController.candidateArray = self.candidatesList
         }
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        isSearching = true
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.showsCancelButton = false
+
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        
+        searchBar.resignFirstResponder()
+        
+        // and reload our table...
+        tableView?.reloadData()
+
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        isSearching = true
+        searchBar.showsCancelButton = true
+        
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        // filter results to what's contained within the array that matches seach terms...
+        searchingArray = constituencyArray.filter({ (c) -> Bool in
+            let nameString:NSString = NSString(string: c.name)
+            let range = nameString.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })
+        
+        // and reload our table...
+        tableView?.reloadData()
+        
+        searchBar.showsCancelButton = true
+
     }
 
 }
