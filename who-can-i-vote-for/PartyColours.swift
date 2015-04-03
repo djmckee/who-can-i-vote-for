@@ -26,10 +26,13 @@ class PartyColours {
         } else if partyName.contains("UK Independence Party"){
             // purple.
             return UIColor(red: (123.0000/255.0), green: (38.0000/255.0), blue: (159.0000/255.0), alpha: (1.0000))
-        } else if partyName.contains("SNP") {
+        } else if partyName.contains("Scottish National Party") {
             // A light ish yellow
             return UIColor(red: (255.0000/255.0), green: (255.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
-        }else if partyName.contains("Liberal Democrats"){
+        } else if partyName.contains("Plaid Cymru") {
+            // A darkish green.
+            return UIColor(red: (50.0000/255.0), green: (116.0000/255.0), blue: (30.0000/255.0), alpha: (1.0000))
+        } else if partyName.contains("Liberal Democrats"){
             // Lib dem yellow.
             return UIColor(red: (238.0000/255.0), green: (187.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
         }else {

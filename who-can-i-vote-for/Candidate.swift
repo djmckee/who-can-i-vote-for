@@ -22,4 +22,9 @@ class Candidate {
         return PartyColours.colourForParty(self.party)
     }
     
+    init(name:String, party:String){
+        self.name = name
+        self.party = party
+    }
+    
 }

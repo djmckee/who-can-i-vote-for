@@ -34,10 +34,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         //APIManager.getConstituencyWithPostcode("NE17RU")
-        APIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608))
+        var myConstituency:Constituency = YourNextMPAPIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608)) { (c) -> () in
+            YourNextMPAPIManager.getCandidatesInConstituency(c!)
+            return
+        }
+
+        //YourNextMPAPIManager.getCandidatesInConstituency(Constituency(constituencyId: 66055))
         
         
-        APIManager.getConstituencies()
+        //YourNextMPAPIManager.getConstituencies()
     }
 
     override func didReceiveMemoryWarning() {

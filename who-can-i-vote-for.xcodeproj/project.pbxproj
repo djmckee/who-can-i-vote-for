@@ -16,7 +16,7 @@
 		BA6D49291ACB1977003B004A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49281ACB1977003B004A /* README.md */; };
 		BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492A1ACB1995003B004A /* LICENSE.md */; };
 		BA6D49751ACB1B7C003B004A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49741ACB1B7C003B004A /* Reachability.swift */; };
-		BA6D49771ACB2C93003B004A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49761ACB2C93003B004A /* APIManager.swift */; };
+		BA6D49771ACB2C93003B004A /* YourNextMPAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49761ACB2C93003B004A /* YourNextMPAPIManager.swift */; };
 		BA6D49791ACB2D9D003B004A /* Constituency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49781ACB2D9D003B004A /* Constituency.swift */; };
 		BA6D497C1ACB2E5C003B004A /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497B1ACB2E5C003B004A /* Candidate.swift */; };
 		BA6D497E1ACB2EA8003B004A /* PartyColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497D1ACB2EA8003B004A /* PartyColours.swift */; };
@@ -48,7 +48,7 @@
 		BA6D49281ACB1977003B004A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA6D492A1ACB1995003B004A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		BA6D49741ACB1B7C003B004A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
-		BA6D49761ACB2C93003B004A /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		BA6D49761ACB2C93003B004A /* YourNextMPAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourNextMPAPIManager.swift; sourceTree = "<group>"; };
 		BA6D49781ACB2D9D003B004A /* Constituency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constituency.swift; sourceTree = "<group>"; };
 		BA6D497B1ACB2E5C003B004A /* Candidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
 		BA6D497D1ACB2EA8003B004A /* PartyColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyColours.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		BA6D497A1ACB2E4F003B004A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BA6D49761ACB2C93003B004A /* APIManager.swift */,
+				BA6D49761ACB2C93003B004A /* YourNextMPAPIManager.swift */,
 				BA6D49781ACB2D9D003B004A /* Constituency.swift */,
 				BA6D497B1ACB2E5C003B004A /* Candidate.swift */,
 				BA6D497D1ACB2EA8003B004A /* PartyColours.swift */,
@@ -201,7 +201,7 @@
 				BA6D497E1ACB2EA8003B004A /* PartyColours.swift in Sources */,
 				BA6D497C1ACB2E5C003B004A /* Candidate.swift in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
-				BA6D49771ACB2C93003B004A /* APIManager.swift in Sources */,
+				BA6D49771ACB2C93003B004A /* YourNextMPAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

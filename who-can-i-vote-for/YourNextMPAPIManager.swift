@@ -1,6 +1,8 @@
 //
-//  APIManager.swift
+//  YourNextMPAPIManager.swift
 //  who-can-i-vote-for
+//  A Swift API wrapper for the YourNextMP.com API
+//  (all data/endpoints provided by https://yournextmp.com/help/api )
 //
 //  Created by Dylan McKee on 31/03/2015.
 //  Copyright (c) 2015 djmckee. All rights reserved.
@@ -9,11 +11,8 @@
 import Foundation
 import CoreLocation
 
-class APIManager {
-    // declare base url for the API (from https://yournextmp.com/help/api )
-    // (they actually only seem to use http:// in the documentation but https:// also appears to work and is nicer so we're gonna use it instead).
-    let baseUrl:String! = "https://yournextmp.popit.mysociety.org/api/v0.1/"
-    
+class YourNextMPAPIManager {
+
     class func getConstituencyWithPostcode(postcodeString: String!) -> Constituency! {
         // concatenate our URL together.
         let urlString = "https://mapit.mysociety.org/postcode/" + postcodeString
@@ -54,21 +53,20 @@ class APIManager {
 
     }
     
-    class func getConstituencyWithCoordinate(coordinate : CLLocationCoordinate2D!) -> Constituency! {
+    class func getConstituencyWithCoordinate(coordinate : CLLocationCoordinate2D!, completionHandler: (Constituency?) -> ()) -> Constituency! {
         // concatenate our URL together.
         let latitude:Double = coordinate.latitude as Double
         let longitude:Double = coordinate.longitude as Double
         
         // NOTE: Longitude comes BEFORE Latitude for this API (unlike anything else in existance ever).
         let urlString = String(format: "https://mapit.mysociety.org/point/4326/%f,%f?type=WMC", longitude, latitude)
-        println("urlString: " + urlString)
         
         var id:Int!
         
         // perform request...
         request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
-            println("Data: ")
-            println(data)
+            //println("Data: ")
+            //println(data)
             
             if (data != nil) {
                 // have data - yay.
@@ -85,11 +83,13 @@ class APIManager {
                     println("success")
                     // okay, the key is the ID, apparently...
                     var idNumberStringRepresentation:String! = dict.keys.array[0]
-                    
+                    println("idNumberStringRepresentation = " + idNumberStringRepresentation)
                     // do a quick conversion...
                     id = idNumberStringRepresentation.toInt()
                     
                 }
+                
+                completionHandler(Constituency(constituencyId: id))
             }
             
         }
@@ -141,5 +141,90 @@ class APIManager {
         return array;
     }
     
+    class func getCandidatesInConstituency(constituency: Constituency) -> Array<Candidate> {
+        // construct a blank mutable array...
+        var array:Array<Candidate> = Array<Candidate>()
+        
+        // formulate our URL...
+        println(constituency.idNumber)
+        let urlString:String = String(format: "https://yournextmp.popit.mysociety.org/api/v0.1/posts/%d?embed=membership.person", constituency.idNumber)
+        println("urlString: " + urlString)
+
+        // perform request...
+        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
+            //println("Data: ")
+            //println(data)
+            
+            var standingCandidates:Array<Dictionary<String, AnyObject>> = Array<Dictionary<String, AnyObject>>();
+            
+            var dataDict:Dictionary<String, AnyObject> = data as Dictionary<String, AnyObject>
+            var results = dataDict["result"] as Dictionary<String, AnyObject>
+            var memberships = results["memberships"] as Array<Dictionary<String, AnyObject>>
+
+            
+            for member in memberships {
+                var personInfo = member["person_id"] as Dictionary<String, AnyObject>
+                var standing = personInfo["standing_in"]
+                var standingDict = standing as NSDictionary
+                if (standingDict.objectForKey("2015") != nil) {
+                    // also check for <null> strings, grrrr....
+                    var standingDetails = standingDict.objectForKey("2015")
+                    if (standingDetails as? NSNull != nil){
+                        //println("should not be including " + member.description)
+                        continue
+                    }
+                    
+                    // check it's the right constituency too!
+                    var c = standingDetails?.objectForKey("post_id") as NSString
+                    
+                    if c.integerValue != constituency.idNumber {
+                        // they're not standing in our constituency for this election... ignore them!
+                        continue
+                    }
+                    
+                    // they're standing this year!
+                    // let's instanciate a candidate object for them, and add relevant information...
+                    var name = personInfo["name"] as String
+                    var partyMemberships = personInfo["party_memberships"] as NSDictionary
+                    var partyName = partyMemberships.objectForKey("2015")?.objectForKey("name") as NSString
+                    var candidate:Candidate = Candidate(name: name, party: partyName)
+
+                    array.append(candidate)
+                }
+            }
+            
+            // grr, duplicates seem to be an issue...
+            var uniques:Array<Candidate> = Array<Candidate>();
+            
+            // loop through each candidate checking uniqes doesn't already contain someone with their party - two candidates cannot stand for the same party in one consituency (right...)
+            for c:Candidate in array {
+
+                var shouldAdd:Bool = true;
+                
+                for x:Candidate in uniques {
+                    // is x's party equal to c's party?
+                    // (wow swift's string equality checking syntax is lovely).
+                    if x.party == c.party {
+                        // DO NOT allow more than one candidate for each party in the constituency...
+                        shouldAdd = false;
+                    }
+                }
+                // we've finished checking EVERY exisiting unique candidate, so we'll know if we can safely add...
+                if shouldAdd {
+                    uniques.append(c)
+                }
+            }
+            
+            // set our array to be the unique array...
+            array = uniques
+            
+            // okay, now we're gonna sort the array alphabetically to be fair (just by first name, keeping things sensible)...
+            array = array.sorted({ $0.name < $1.name})
+            
+        }
+        
+        // return our array now that it's full...
+        return array;
+    }
     
 }
