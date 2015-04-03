@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Register for notifcaitons...
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert, categories: nil))
+        
         // Start reachability warnings (so that they're app-wide)
         let reachability = Reachability.reachabilityForInternetConnection()
         
@@ -33,6 +36,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         reachability.startNotifier()
+        
+        // check NSUserDefaults - if it's a first launch, schedule a notification to remind teh user to vote!
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let launchedBeforeKey = "launchedBefore"
+        var launchedBefore:Bool = defaults.boolForKey(launchedBeforeKey)
+        
+        // if they haven't launched us before, let's try and notify!
+        if !launchedBefore {
+            // create our notification
+            var localNotification:UILocalNotification = UILocalNotification()
+            // appropriate body
+            
+            localNotification.alertBody = "Remember to vote today!"
+            
+            // UNIX timestamp for 8am GMT (so 9am local UK time) on May 7th is 1430985600 - thanks http://www.epochconverter.com/
+            localNotification.fireDate = NSDate(timeIntervalSince1970: 1430985600)
+            
+            // let's schedule this...
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
+            // and set the key so they don't get bombarded!
+            defaults.setBool(true, forKey:launchedBeforeKey)
+            
+            // sync 'n save...
+            defaults.synchronize()
+        }
         
         return true
     }
