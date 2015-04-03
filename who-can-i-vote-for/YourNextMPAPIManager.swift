@@ -34,6 +34,8 @@ class YourNextMPAPIManager {
                 if (dict["code"] != nil) {
                     println("error code present!")
                     id = -1
+                    completionHandler(Constituency(constituencyId: id))
+
                 } else {
                     //println("success")
                     // no error codes - get parsing...
@@ -78,6 +80,8 @@ class YourNextMPAPIManager {
                 if (dict["code"] != nil) {
                     println("error code present!")
                     id = -1
+                    completionHandler(Constituency(constituencyId: id))
+
                 } else {
                     //println("success")
                     // okay, the key is the ID, apparently...

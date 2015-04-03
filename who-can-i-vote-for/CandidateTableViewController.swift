@@ -48,7 +48,7 @@ class CandidateTableViewController: UITableViewController {
         
         cell.nameLabel?.text = candidateArray[indexPath.row].name
         cell.partyLabel?.text = candidateArray[indexPath.row].party
-        cell.backgroundColor = candidateArray[indexPath.row].colour
+        cell.contentView.backgroundColor = candidateArray[indexPath.row].colour
 
         
         return cell

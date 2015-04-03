@@ -120,43 +120,53 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func loadCandidatesForConstituency(c:Constituency){
+        // get candidates... update loading UI too
+        SwiftSpinner.show("Finding candidates")
+        
+        
+        YourNextMPAPIManager.getCandidatesInConstituency(c, completionHandler: { (candidates) -> () in
+            // load a candidate list!
+            SwiftSpinner.hide()
+            
+            self.candidatesList = candidates
+            self.performSegueWithIdentifier("candidatesListSegue", sender: self)
+            
+        })
+
+    }
+    
     @IBAction func findByPostcode(sender: UIButton) {
         // get postcode in an alert...
-        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .Alert)
         
         // we need the text field/it's behaviour set up...
-        let postcodeSearch = UIAlertAction(title: "Login", style: .Default) { (_) in
+        let postcodeSearch = UIAlertAction(title: "Search", style: .Default) { (_) in
             // get text field
             let searchTextField = alertController.textFields![0] as UITextField
+            
+            // remove whitespace!!!!
+            let postcode:String = searchTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
             
             // start loading UI...
             SwiftSpinner.show("Locating constituency")
             
             // now search...
-            YourNextMPAPIManager.getConstituencyWithPostcode(searchTextField.text, completionHandler: { (c) -> () in
+            YourNextMPAPIManager.getConstituencyWithPostcode(postcode, completionHandler: { (c) -> () in
                 // see if it's valid...
                 if c?.idNumber == -1 {
                     // invalid constituency!
+                    SwiftSpinner.hide()
                     self.invalidConstituency();
                     return
                 }
                 
                 // it's real, carry on!
-                // get candidates... update loading UI too
-                SwiftSpinner.show("Finding candidates")
-                
-                YourNextMPAPIManager.getCandidatesInConstituency(c!, completionHandler: { (candidates) -> () in
-                    // load a candidate list!
-                    SwiftSpinner.hide()
-                    
-                    self.candidatesList = candidates
-                    self.performSegueWithIdentifier("candidatesListSegue", sender: self)
-                    
-                })
+                self.loadCandidatesForConstituency(c!)
                 
             })
         }
-        postcodeSearch.enabled = false
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             // placeholder so the user knows what to do...
