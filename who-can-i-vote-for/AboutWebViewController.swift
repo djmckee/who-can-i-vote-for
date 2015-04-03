@@ -13,6 +13,8 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        self.title = "About"
 
         // Do any additional setup after loading the view.
         // Load our about html file into the webview...
@@ -27,28 +29,34 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool {
-        // don't load new pages! force them into safari... (after asking)
-        
-        let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .Alert)
-    
-        let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
-            // open in Safari...
-            UIApplication.sharedApplication().openURL(request.URL)
-            return
+
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            // don't load new pages! force them into safari... (after asking)
+            
+            let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .Alert)
+            
+            let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+                // open in Safari...
+                UIApplication.sharedApplication().openURL(request.URL)
+                return
+            }
+            
+            alertController.addAction(openAction)
+            
+            let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+                // nothing to do really.
+            }
+            
+            alertController.addAction(cancelAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            
+            return false
         }
         
-        alertController.addAction(openAction)
-        
-        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-            // nothing to do really.
-        }
-        
-        alertController.addAction(cancelAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-        
-        
-        return false
+        // otherwise do it
+        return true
     }
 
     override func didReceiveMemoryWarning() {
