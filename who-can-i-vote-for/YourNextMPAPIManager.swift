@@ -132,7 +132,7 @@ class YourNextMPAPIManager {
                 // and add it to our array...
                 array.append(constituency)
                 
-                println("Adding " + constituencyName)
+                //println("Adding " + constituencyName)
             }
 
             // return to the completion handler...

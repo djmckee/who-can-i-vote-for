@@ -50,6 +50,9 @@ class ConstituencyTableViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // de-select!
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         // get tapped constituency...
         let chosen:Constituency = constituencyArray[indexPath.row]
         println("chosen " + chosen.name)
