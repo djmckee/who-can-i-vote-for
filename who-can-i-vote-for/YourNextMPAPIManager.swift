@@ -116,12 +116,13 @@ class YourNextMPAPIManager {
             let dataKeys:Array<String> = dataSet.keys.array;
             
             // lol, range literals to the extreme... (subtracting 1 to avoid off by one!!)
-            for i in 0...(dataKeys.count - 1) {
+            for key in dataKeys {
                 // get ID from the key...
-                var constituencyId:Int = dataKeys[i].toInt()!
+                var constituencyId:Int = key.toInt()!
                 
                 // get associated name info from the object dict's "name" key...
-                var constituencyName:String = dataSet.values.array[i]["name"] as String
+                var dict:Dictionary<String, AnyObject> = dataSet[key]!
+                var constituencyName:String = dict["name"] as String
                 
                 // instanciate our Constituency
                 var constituency:Constituency = Constituency(constituencyId: constituencyId)
