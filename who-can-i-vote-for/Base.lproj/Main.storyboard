@@ -235,17 +235,48 @@
         <!--Candidates list-->
         <scene sceneID="zUm-ZH-gGV">
             <objects>
-                <tableViewController title="Candidates list" id="E6f-gg-iia" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="j9x-kx-h8Q">
+                <tableViewController title="Candidates list" id="E6f-gg-iia" customClass="CandidateTableViewController" customModule="who_can_i_vote_for" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="22" sectionFooterHeight="22" id="j9x-kx-h8Q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cfA-8U-7w2">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CandidateCell" rowHeight="95" id="cfA-8U-7w2" customClass="CandidateTableViewCell" customModule="who_can_i_vote_for" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfA-8U-7w2" id="nrr-QA-V3F">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8v-zM-uZa">
+                                            <rect key="frame" x="8" y="8" width="584" height="55"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="55" id="BkO-Nw-Md3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aoa-wG-am7">
+                                            <rect key="frame" x="8" y="64" width="584" height="22"/>
+                                            <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Aoa-wG-am7" firstAttribute="trailing" secondItem="nrr-QA-V3F" secondAttribute="trailingMargin" id="2aW-RC-g4q"/>
+                                        <constraint firstItem="S8v-zM-uZa" firstAttribute="leading" secondItem="nrr-QA-V3F" secondAttribute="leadingMargin" id="3Nz-so-Fzw"/>
+                                        <constraint firstItem="S8v-zM-uZa" firstAttribute="top" secondItem="nrr-QA-V3F" secondAttribute="topMargin" id="6dB-pK-6wa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Aoa-wG-am7" secondAttribute="bottom" constant="0.5" id="7Jr-ld-ay0"/>
+                                        <constraint firstItem="S8v-zM-uZa" firstAttribute="trailing" secondItem="nrr-QA-V3F" secondAttribute="trailingMargin" id="DlV-Xa-pxV"/>
+                                        <constraint firstItem="Aoa-wG-am7" firstAttribute="leading" secondItem="nrr-QA-V3F" secondAttribute="leadingMargin" id="Vpr-mN-yKP"/>
+                                        <constraint firstItem="Aoa-wG-am7" firstAttribute="top" secondItem="S8v-zM-uZa" secondAttribute="bottom" constant="1" id="deT-UZ-Zb0"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="S8v-zM-uZa" id="oaG-l0-5g9"/>
+                                    <outlet property="partyLabel" destination="Aoa-wG-am7" id="45N-e2-McX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

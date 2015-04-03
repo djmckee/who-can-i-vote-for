@@ -24,6 +24,8 @@
 		BAC576EC1ACED28F00C21EB2 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */; };
 		BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */; };
 		BAC576F41ACEDE4600C21EB2 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC576F31ACEDE4600C21EB2 /* About.html */; };
+		BAC576F61ACEECE800C21EB2 /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */; };
+		BAC576F81ACEED6100C21EB2 /* CandidateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +61,8 @@
 		BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftSpinner.swift; path = SwiftSpinner/SwiftSpinner/SwiftSpinner.swift; sourceTree = "<group>"; };
 		BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWebViewController.swift; sourceTree = "<group>"; };
 		BAC576F31ACEDE4600C21EB2 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
+		BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
+		BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */,
 				BA33B2B21ACAB4FF00170D29 /* Supporting Files */,
 				BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */,
+				BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */,
+				BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */,
 			);
 			path = "who-can-i-vote-for";
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 				BA6D49751ACB1B7C003B004A /* Reachability.swift in Sources */,
 				BA6D49801ACB2F7B003B004A /* String+ContainsExtension.swift in Sources */,
 				BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */,
+				BAC576F81ACEED6100C21EB2 /* CandidateTableViewController.swift in Sources */,
 				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
@@ -246,6 +253,7 @@
 				BA6D497C1ACB2E5C003B004A /* Candidate.swift in Sources */,
 				BA33B2B51ACAB4FF00170D29 /* AppDelegate.swift in Sources */,
 				BA6D49771ACB2C93003B004A /* YourNextMPAPIManager.swift in Sources */,
+				BAC576F61ACEECE800C21EB2 /* CandidateTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
