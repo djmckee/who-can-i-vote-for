@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eGo-22-CnF">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -85,6 +84,9 @@
                                     <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="kc8-op-1Zw" kind="show" identifier="constituenciesListSegue" id="4gX-0l-W1t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-Yn-eEd">
                                 <rect key="frame" x="200" y="362" width="200" height="40"/>
@@ -101,13 +103,25 @@
                                     <action selector="openWebsiteClicked:" destination="vXZ-lx-hvc" eventType="touchDown" id="JK1-DU-5Cw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6N-UD-qT0">
+                                <rect key="frame" x="16" y="558" width="22" height="22"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Jxa-QV-yq1" kind="show" identifier="aboutSegue" id="Dto-gv-CJA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10196078431372549" green="0.73725490196078436" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fcb-HS-Yt1" firstAttribute="top" secondItem="pNO-CQ-jsc" secondAttribute="bottom" constant="8" id="IdP-MG-8vK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="b6N-UD-qT0" secondAttribute="bottom" constant="20" id="J1L-cU-Mto"/>
                             <constraint firstAttribute="centerY" secondItem="0JD-Yx-WE0" secondAttribute="centerY" constant="99.5" id="Ksv-tN-XaH"/>
                             <constraint firstItem="0JD-Yx-WE0" firstAttribute="centerX" secondItem="pNO-CQ-jsc" secondAttribute="centerX" id="Onr-aX-AE8"/>
                             <constraint firstAttribute="centerY" secondItem="fHC-9n-K6J" secondAttribute="centerY" constant="168.5" id="cTx-WQ-qBr"/>
+                            <constraint firstItem="b6N-UD-qT0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="eX3-aA-jav"/>
                             <constraint firstItem="fcb-HS-Yt1" firstAttribute="centerX" secondItem="pNO-CQ-jsc" secondAttribute="centerX" id="f07-nZ-g5q"/>
                             <constraint firstAttribute="centerX" secondItem="pNO-CQ-jsc" secondAttribute="centerX" id="gfJ-fk-lte"/>
                             <constraint firstItem="0JD-Yx-WE0" firstAttribute="centerX" secondItem="fHC-9n-K6J" secondAttribute="centerX" id="kXw-fK-7RC"/>
@@ -122,9 +136,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="E9V-s3-BoY"/>
                     <connections>
-                        <segue destination="kc8-op-1Zw" kind="show" id="jj4-Qw-tFh"/>
                         <segue destination="E6f-gg-iia" kind="show" id="dJn-jR-gXI"/>
-                        <segue destination="Jxa-QV-yq1" kind="show" id="hoF-0h-cnY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -180,16 +192,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search Constituencies" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-rP-dEL">
+                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search Constituencies" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-rP-dEL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Iy-bp4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Iy-bp4">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fEl-e0-nRf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConstituencyCell" id="fEl-e0-nRf" customClass="ConstituencyTableViewCell" customModule="who_can_i_vote_for" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fEl-e0-nRf" id="Rb1-xr-E8q">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -201,6 +213,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="jvb-f0-2i5" firstAttribute="bottom" secondItem="Rb1-xr-E8q" secondAttribute="bottomMargin" id="4zK-AF-iLw"/>
                                                 <constraint firstItem="jvb-f0-2i5" firstAttribute="top" secondItem="Rb1-xr-E8q" secondAttribute="topMargin" id="BOY-Vz-Aca"/>
@@ -210,6 +223,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="jvb-f0-2i5" secondAttribute="centerY" id="eAc-gE-0eo"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="constituencyLabel" destination="jvb-f0-2i5" id="0fQ-Rl-CtE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
