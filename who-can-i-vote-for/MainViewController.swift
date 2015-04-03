@@ -16,8 +16,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
         
+ 
         // fire up corelocation, making ourselves the delegate
         locationManager.delegate = self
         
@@ -34,9 +36,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         //APIManager.getConstituencyWithPostcode("NE17RU")
+        // begin loading UI...
+
         YourNextMPAPIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608)) { (c) -> () in
             YourNextMPAPIManager.getCandidatesInConstituency(c!, {(candidates) -> ()
                 in
+                //SwiftSpinner.hide()
                 println(candidates)
             })
             return
@@ -46,6 +51,20 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
         
         //YourNextMPAPIManager.getConstituencies()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // Hide navigation bar!!!!1
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        // Show navigation bar (so other views can use it)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        super.viewDidDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,6 +83,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             // alert the user then return.
             println("no current location!")
             
+            // UIAlertView for iOS 7 backward compatiblity.
             let locationAlert = UIAlertView()
             locationAlert.title = "No location found"
             locationAlert.message = "We're sorry but we can't find your current location at the moment. Please try another method."

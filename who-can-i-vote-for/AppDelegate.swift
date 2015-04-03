@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         reachability.whenUnreachable = { reachability in
             println("Internet is not reachable :'(")
             // alert the user...
+            
+            // UIAlertView for iOS 7 backward compatiblity.
             let internetConnectionAlert = UIAlertView()
             internetConnectionAlert.title = "No internet connection"
             internetConnectionAlert.message = "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again."

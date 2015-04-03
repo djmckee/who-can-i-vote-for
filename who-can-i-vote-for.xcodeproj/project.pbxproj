@@ -22,6 +22,8 @@
 		BA6D497E1ACB2EA8003B004A /* PartyColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497D1ACB2EA8003B004A /* PartyColours.swift */; };
 		BA6D49801ACB2F7B003B004A /* String+ContainsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */; };
 		BAC576EC1ACED28F00C21EB2 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */; };
+		BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */; };
+		BAC576F41ACEDE4600C21EB2 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC576F31ACEDE4600C21EB2 /* About.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +57,8 @@
 		BA6D497D1ACB2EA8003B004A /* PartyColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyColours.swift; sourceTree = "<group>"; };
 		BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ContainsExtension.swift"; sourceTree = "<group>"; };
 		BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftSpinner.swift; path = SwiftSpinner/SwiftSpinner/SwiftSpinner.swift; sourceTree = "<group>"; };
+		BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWebViewController.swift; sourceTree = "<group>"; };
+		BAC576F31ACEDE4600C21EB2 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,11 +75,9 @@
 		BA33B2A61ACAB4FF00170D29 = {
 			isa = PBXGroup;
 			children = (
-				BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */,
-				BA6D49741ACB1B7C003B004A /* Reachability.swift */,
+				BAC576F01ACED65B00C21EB2 /* Dependencies */,
 				BA6D492A1ACB1995003B004A /* LICENSE.md */,
 				BA6D49281ACB1977003B004A /* README.md */,
-				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
 				BA33B2B11ACAB4FF00170D29 /* who-can-i-vote-for */,
 				BA33B2B01ACAB4FF00170D29 /* Products */,
 			);
@@ -95,6 +97,7 @@
 				BA6D497A1ACB2E4F003B004A /* Model */,
 				BA33B2B41ACAB4FF00170D29 /* AppDelegate.swift */,
 				BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */,
+				BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */,
 				BA33B2B81ACAB4FF00170D29 /* Main.storyboard */,
 				BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */,
 				BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */,
@@ -108,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BA33B2B31ACAB4FF00170D29 /* Info.plist */,
+				BAC576F31ACEDE4600C21EB2 /* About.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -121,6 +125,40 @@
 				BA6D497D1ACB2EA8003B004A /* PartyColours.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		BAC576ED1ACED63E00C21EB2 /* SwiftSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				BAC576EB1ACED28F00C21EB2 /* SwiftSpinner.swift */,
+			);
+			name = SwiftSpinner;
+			sourceTree = "<group>";
+		};
+		BAC576EE1ACED64600C21EB2 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BA6D49741ACB1B7C003B004A /* Reachability.swift */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		BAC576EF1ACED64E00C21EB2 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				BA33B2E71ACAB71900170D29 /* Alamofire.swift */,
+			);
+			name = Alamofire;
+			sourceTree = "<group>";
+		};
+		BAC576F01ACED65B00C21EB2 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				BAC576ED1ACED63E00C21EB2 /* SwiftSpinner */,
+				BAC576EE1ACED64600C21EB2 /* Reachability */,
+				BAC576EF1ACED64E00C21EB2 /* Alamofire */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAC576F41ACEDE4600C21EB2 /* About.html in Resources */,
 				BA33B2BA1ACAB4FF00170D29 /* Main.storyboard in Resources */,
 				BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */,
 				BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */,
@@ -196,6 +235,7 @@
 			files = (
 				BA6D49751ACB1B7C003B004A /* Reachability.swift in Sources */,
 				BA6D49801ACB2F7B003B004A /* String+ContainsExtension.swift in Sources */,
+				BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */,
 				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
