@@ -10,7 +10,10 @@ import UIKit
 
 class ConstituencyTableViewController: UIViewController {
 
+    //TODO: Make list searchable
+    
     var constituencyArray:Array<Constituency> = []
+    var candidatesList:Array<Candidate>! = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +54,28 @@ class ConstituencyTableViewController: UIViewController {
         let chosen:Constituency = constituencyArray[indexPath.row]
         println("chosen " + chosen.name)
         
+        // get candidates... update loading UI too
+        SwiftSpinner.show("Finding candidates")
+        
+        
+        YourNextMPAPIManager.getCandidatesInConstituency(chosen, completionHandler: { (candidates) -> () in
+            // load a candidate list!
+            SwiftSpinner.hide()
+            
+            self.candidatesList = candidates
+            self.performSegueWithIdentifier("constituencyCandidateSegue", sender: self)
+            
+        })
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "constituencyCandidateSegue" {
+            // load candidates in
+            var viewController:CandidateTableViewController = segue.destinationViewController as CandidateTableViewController
+            viewController.candidateArray = self.candidatesList
+        }
     }
-    */
 
 }

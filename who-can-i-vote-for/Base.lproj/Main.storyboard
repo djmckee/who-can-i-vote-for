@@ -257,6 +257,9 @@
                             <constraint firstItem="sQh-rP-dEL" firstAttribute="leading" secondItem="qB0-73-caF" secondAttribute="leading" id="yZo-80-8fe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="E6f-gg-iia" kind="show" identifier="constituencyCandidateSegue" id="jCT-hs-ct6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8VW-8f-2Dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,4 +323,7 @@
             <point key="canvasLocation" x="975" y="974"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jCT-hs-ct6"/>
+    </inferredMetricsTieBreakers>
 </document>
