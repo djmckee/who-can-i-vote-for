@@ -153,6 +153,9 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
             return range.location != NSNotFound
         })
         
+        // re-sort to ensure alphabetic arrangement is maintained.
+        searchingArray = searchingArray.sorted({ $0.name < $1.name})
+        
         // and reload our table...
         tableView?.reloadData()
         

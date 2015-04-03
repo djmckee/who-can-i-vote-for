@@ -134,6 +134,9 @@ class YourNextMPAPIManager {
                 
                 //println("Adding " + constituencyName)
             }
+            
+            // sort the array alphabetically
+            array = array.sorted({ $0.name < $1.name})
 
             // return to the completion handler...
             completionHandler(array)
