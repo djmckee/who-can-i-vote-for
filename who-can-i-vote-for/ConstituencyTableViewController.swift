@@ -25,11 +25,20 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         self.title = "Constituencies"
 
 
+        // very cunning search bar cancel button  colour reset trick from http://stackoverflow.com/questions/2787481/uisearchbar-cancel-button-color
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        finishSearching()
+        
+        super.viewWillDisappear(animated)
     }
 
     // MARK: - Table view data source
@@ -77,10 +86,10 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
             chosen = constituencyArray[indexPath.row]
         }
         
-        println("chosen " + chosen.name)
+        //println("chosen " + chosen.name)
         
         // get candidates... update loading UI too
-        SwiftSpinner.show("Finding candidates")
+        SwiftSpinner.show("Finding candidates", animated: true)
         
         
         YourNextMPAPIManager.getCandidatesInConstituency(chosen, completionHandler: { (candidates) -> () in
@@ -114,15 +123,19 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
 
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func finishSearching() {
         isSearching = false
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
+        searchBar?.showsCancelButton = false
+        searchBar?.text = ""
         
-        searchBar.resignFirstResponder()
+        searchBar?.resignFirstResponder()
         
         // and reload our table...
         tableView?.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        finishSearching()
 
     }
     

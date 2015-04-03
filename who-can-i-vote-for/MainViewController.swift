@@ -95,7 +95,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
         // we definitely have a location by this point... use it!
         // start loading UI...
-        SwiftSpinner.show("Locating constituency")
+        SwiftSpinner.show("Locating constituency", animated: true)
         
         // now search...
         YourNextMPAPIManager.getConstituencyWithCoordinate(currentLocation.coordinate, completionHandler: { (c) -> () in
@@ -129,7 +129,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             
             // start loading UI...
-            SwiftSpinner.show("Locating constituency")
+            SwiftSpinner.show("Locating constituency", animated: true)
             
             // now search...
             YourNextMPAPIManager.getConstituencyWithPostcode(postcode, completionHandler: { (c) -> () in
@@ -194,7 +194,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // get candidates... update loading UI too
-        SwiftSpinner.show("Finding candidates")
+        SwiftSpinner.show("Finding candidates", animated: true)
         
         
         YourNextMPAPIManager.getCandidatesInConstituency(c, completionHandler: { (candidates) -> () in
@@ -231,7 +231,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // last location is the most recent
         // (typecasting saves all)
         currentLocation = locations.last as CLLocation
-        println("updated location to: " + currentLocation.description)
+        //println("updated location to: " + currentLocation.description)
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
