@@ -1,9 +1,9 @@
-[submodule "Alamofire"]
-	path = Alamofire
-	url = https://github.com/Alamofire/Alamofire.git
 [submodule "Reachability"]
 	path = Reachability
 	url = git@github.com:ashleymills/Reachability.swift.git
 [submodule "SwiftSpinner"]
 	path = SwiftSpinner
 	url = git@github.com:icanzilb/SwiftSpinner.git
+[submodule "Alamofire"]
+	path = Alamofire
+	url = git@github.com:Alamofire/Alamofire.git
