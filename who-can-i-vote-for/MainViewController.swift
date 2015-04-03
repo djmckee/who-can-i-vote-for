@@ -38,27 +38,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         // we wanna request auth. first...
-       locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
         // and start updates...
         locationManager.startUpdatingLocation()
         
-        //APIManager.getConstituencyWithPostcode("NE17RU")
-        // begin loading UI...
-
-        YourNextMPAPIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608)) { (c) -> () in
-            YourNextMPAPIManager.getCandidatesInConstituency(c!, {(candidates) -> ()
-                in
-                //SwiftSpinner.hide()
-                println(candidates)
-            })
-            return
-        }
-        
-        //YourNextMPAPIManager.getCandidatesInConstituency(Constituency(constituencyId: 66055))
-        
-        
-        //YourNextMPAPIManager.getConstituencies()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -105,6 +89,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // we definitely have a location by this point... use it!
+        // start loading UI...
+        SwiftSpinner.show("Locating constituency")
+        
+        // now search...
+        YourNextMPAPIManager.getConstituencyWithCoordinate(currentLocation.coordinate, completionHandler: { (c) -> () in
+            self.loadCandidatesForConstituency(c!)
+            
+        })
     }
     
     func invalidConstituency() {
@@ -121,6 +113,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func loadCandidatesForConstituency(c:Constituency){
+        // see if it's valid...
+        if c.idNumber == -1 {
+            // invalid constituency!
+            SwiftSpinner.hide()
+            self.invalidConstituency();
+            return
+        }
+        
         // get candidates... update loading UI too
         SwiftSpinner.show("Finding candidates")
         
@@ -140,6 +140,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // get postcode in an alert...
         let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .Alert)
         
+        // and a simple cancel button too!
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+            // do nothing really.
+        }
+        alertController.addAction(cancelAction)
+        
         // we need the text field/it's behaviour set up...
         let postcodeSearch = UIAlertAction(title: "Search", style: .Default) { (_) in
             // get text field
@@ -154,15 +160,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             // now search...
             YourNextMPAPIManager.getConstituencyWithPostcode(postcode, completionHandler: { (c) -> () in
-                // see if it's valid...
-                if c?.idNumber == -1 {
-                    // invalid constituency!
-                    SwiftSpinner.hide()
-                    self.invalidConstituency();
-                    return
-                }
-                
-                // it's real, carry on!
                 self.loadCandidatesForConstituency(c!)
                 
             })
@@ -174,12 +171,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         alertController.addAction(postcodeSearch)
-        
-        // and a simple cancel button too!
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
-            // do nothing really.
-        }
-        alertController.addAction(cancelAction)
+
         
         self.presentViewController(alertController, animated: true, completion: nil)
         
