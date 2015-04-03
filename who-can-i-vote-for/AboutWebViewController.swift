@@ -35,13 +35,6 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
             
             let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .Alert)
             
-            let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
-                // open in Safari...
-                UIApplication.sharedApplication().openURL(request.URL)
-                return
-            }
-            
-            alertController.addAction(openAction)
             
             let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
                 // nothing to do really.
@@ -49,6 +42,15 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
             
             alertController.addAction(cancelAction)
             
+            
+            let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+                // open in Safari...
+                UIApplication.sharedApplication().openURL(request.URL)
+                return
+            }
+            
+            alertController.addAction(openAction)
+
             self.presentViewController(alertController, animated: true, completion: nil)
             
             
