@@ -70,6 +70,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func findByLocation(sender: UIButton) {
+        // check connection...
+        if !reachabilityCheck() {
+            return
+        }
+        
         // okay first check we have a current location - if we don't, we can't find anything from nothing...
         if currentLocation == nil {
             // alert the user then return.
@@ -99,44 +104,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         })
     }
     
-    func invalidConstituency() {
-        // a generic 'not valid constituency' warning - ask the user to try again in an alert.
-        let alertController = UIAlertController(title: "Cannot find constituency", message: "We're sorry but we can't find your constituency. Please try another method of locating it, or choose it from the list instead.", preferredStyle: .Alert)
-        
-        let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-            // nothing to do really.
-        }
-        
-        alertController.addAction(cancelAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    func loadCandidatesForConstituency(c:Constituency){
-        // see if it's valid...
-        if c.idNumber == -1 {
-            // invalid constituency!
-            SwiftSpinner.hide()
-            self.invalidConstituency();
+    @IBAction func findByPostcode(sender: UIButton) {
+        // check connection...
+        if !reachabilityCheck() {
             return
         }
         
-        // get candidates... update loading UI too
-        SwiftSpinner.show("Finding candidates")
-        
-        
-        YourNextMPAPIManager.getCandidatesInConstituency(c, completionHandler: { (candidates) -> () in
-            // load a candidate list!
-            SwiftSpinner.hide()
-            
-            self.candidatesList = candidates
-            self.performSegueWithIdentifier("candidatesListSegue", sender: self)
-            
-        })
-
-    }
-    
-    @IBAction func findByPostcode(sender: UIButton) {
         // get postcode in an alert...
         let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .Alert)
         
@@ -178,6 +151,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func findByConstituencyList(sender: UIButton) {
+        // check connection...
+        if !reachabilityCheck() {
+            return
+        }
+        
         // bit of loading UI...
         SwiftSpinner.show("Loading constituencies...", animated: true)
         
@@ -190,6 +168,63 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             self.constituenciesList = c
             self.performSegueWithIdentifier("constituenciesListSegue", sender: self)
         }
+    }
+    
+    
+    func invalidConstituency() {
+        // a generic 'not valid constituency' warning - ask the user to try again in an alert.
+        let alertController = UIAlertController(title: "Cannot find constituency", message: "We're sorry but we can't find your constituency. Please try another method of locating it, or choose it from the list instead.", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+            // nothing to do really.
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func loadCandidatesForConstituency(c:Constituency){
+        // see if it's valid...
+        if c.idNumber == -1 {
+            // invalid constituency!
+            SwiftSpinner.hide()
+            self.invalidConstituency();
+            return
+        }
+        
+        // get candidates... update loading UI too
+        SwiftSpinner.show("Finding candidates")
+        
+        
+        YourNextMPAPIManager.getCandidatesInConstituency(c, completionHandler: { (candidates) -> () in
+            // load a candidate list!
+            SwiftSpinner.hide()
+            
+            self.candidatesList = candidates
+            self.performSegueWithIdentifier("candidatesListSegue", sender: self)
+            
+        })
+        
+    }
+
+    func reachabilityCheck() -> Bool{
+        if Reachability.reachabilityForInternetConnection().currentReachabilityStatus == Reachability.NetworkStatus.NotReachable {
+            // noo!
+            // alert the user and return false...
+            let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+                // nothing to do really.
+            }
+            
+            alertController.addAction(cancelAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        // must be reachable then...
+        return true
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
