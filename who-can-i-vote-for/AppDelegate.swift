@@ -65,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.synchronize()
         }
         
+        // Style our app-wide status bar
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+
+        
         return true
     }
 
