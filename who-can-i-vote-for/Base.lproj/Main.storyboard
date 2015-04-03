@@ -80,12 +80,12 @@
                                     <constraint firstAttribute="height" constant="55" id="Ewy-0r-UDO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Find by constituancy">
+                                <state key="normal" title="Find by constituency">
                                     <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kc8-op-1Zw" kind="show" identifier="constituenciesListSegue" id="4gX-0l-W1t"/>
+                                    <action selector="findByConstituencyList:" destination="vXZ-lx-hvc" eventType="touchDown" id="Swo-tC-ICw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-Yn-eEd">
@@ -136,7 +136,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="E9V-s3-BoY"/>
                     <connections>
-                        <segue destination="E6f-gg-iia" kind="show" id="dJn-jR-gXI"/>
+                        <segue destination="E6f-gg-iia" kind="show" identifier="candidatesListSegue" id="dJn-jR-gXI"/>
+                        <segue destination="kc8-op-1Zw" kind="show" identifier="constituenciesListSegue" id="sFh-IC-QGS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -183,7 +184,7 @@
         <!--Constituencies list-->
         <scene sceneID="oLu-SY-idH">
             <objects>
-                <viewController title="Constituencies list" id="kc8-op-1Zw" sceneMemberID="viewController">
+                <viewController title="Constituencies list" id="kc8-op-1Zw" customClass="ConstituencyTableViewController" customModule="who_can_i_vote_for" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JDx-5a-UqJ"/>
                         <viewControllerLayoutGuide type="bottom" id="bWK-1g-Czo"/>
@@ -192,14 +193,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search Constituencies" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-rP-dEL">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <searchBar contentMode="redraw" placeholder="Search Constituencies" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-rP-dEL">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <color key="barTintColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Iy-bp4">
-                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-Iy-bp4">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="492" id="TUy-zc-oGw"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConstituencyCell" id="fEl-e0-nRf" customClass="ConstituencyTableViewCell" customModule="who_can_i_vote_for" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -228,19 +232,26 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="TUy-zc-oGw"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="kc8-op-1Zw" id="kwn-6N-bOf"/>
+                                    <outlet property="delegate" destination="kc8-op-1Zw" id="1XA-s3-JP5"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sQh-rP-dEL" firstAttribute="centerX" secondItem="1gY-Iy-bp4" secondAttribute="centerX" id="83j-ie-OVV"/>
-                            <constraint firstItem="1gY-Iy-bp4" firstAttribute="top" secondItem="sQh-rP-dEL" secondAttribute="bottom" id="Ys5-an-haJ"/>
-                            <constraint firstItem="sQh-rP-dEL" firstAttribute="leading" secondItem="1gY-Iy-bp4" secondAttribute="trailing" constant="-600" id="eAx-hy-Lu3"/>
-                            <constraint firstItem="sQh-rP-dEL" firstAttribute="top" secondItem="JDx-5a-UqJ" secondAttribute="bottom" constant="-20" id="gxG-Qj-UIp"/>
-                            <constraint firstItem="1gY-Iy-bp4" firstAttribute="top" secondItem="sQh-rP-dEL" secondAttribute="bottom" id="mA6-0w-faO"/>
-                            <constraint firstItem="sQh-rP-dEL" firstAttribute="width" secondItem="1gY-Iy-bp4" secondAttribute="width" id="mXr-6K-MBn"/>
-                            <constraint firstAttribute="width" secondItem="sQh-rP-dEL" secondAttribute="width" id="sO5-4V-HZz"/>
-                            <constraint firstAttribute="centerX" secondItem="sQh-rP-dEL" secondAttribute="centerX" id="yLw-C1-Qt6"/>
-                            <constraint firstItem="bWK-1g-Czo" firstAttribute="top" secondItem="1gY-Iy-bp4" secondAttribute="bottom" id="zVP-ud-PA5"/>
+                            <constraint firstItem="sQh-rP-dEL" firstAttribute="trailing" secondItem="1gY-Iy-bp4" secondAttribute="trailing" id="A4H-P5-O3b"/>
+                            <constraint firstItem="sQh-rP-dEL" firstAttribute="top" secondItem="JDx-5a-UqJ" secondAttribute="bottom" id="Jou-D5-nox"/>
+                            <constraint firstItem="sQh-rP-dEL" firstAttribute="leading" secondItem="1gY-Iy-bp4" secondAttribute="leading" id="UZi-UI-jVe"/>
+                            <constraint firstItem="1gY-Iy-bp4" firstAttribute="top" secondItem="sQh-rP-dEL" secondAttribute="bottom" id="cBe-5q-Rbl"/>
+                            <constraint firstAttribute="trailing" secondItem="sQh-rP-dEL" secondAttribute="trailing" id="ouu-z8-yRp"/>
+                            <constraint firstItem="1gY-Iy-bp4" firstAttribute="bottom" secondItem="bWK-1g-Czo" secondAttribute="top" id="xh3-KC-XKS"/>
+                            <constraint firstItem="sQh-rP-dEL" firstAttribute="leading" secondItem="qB0-73-caF" secondAttribute="leading" id="yZo-80-8fe"/>
                         </constraints>
                     </view>
                 </viewController>
