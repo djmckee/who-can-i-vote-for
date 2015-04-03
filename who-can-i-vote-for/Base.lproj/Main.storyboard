@@ -134,7 +134,7 @@
         <!--About web view-->
         <scene sceneID="3os-Bz-pvm">
             <objects>
-                <viewController title="About web view" id="Jxa-QV-yq1" sceneMemberID="viewController">
+                <viewController title="About web view" id="Jxa-QV-yq1" customClass="AboutWebViewController" customModule="who_can_i_vote_for" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="roo-gx-8ie"/>
                         <viewControllerLayoutGuide type="bottom" id="c1N-sH-FUA"/>
@@ -147,6 +147,9 @@
                                 <rect key="frame" x="16" y="64" width="568" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jxa-QV-yq1" id="vvT-mX-hHW"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,6 +160,9 @@
                             <constraint firstItem="2o6-8o-4J0" firstAttribute="leading" secondItem="wN9-em-heE" secondAttribute="leadingMargin" id="kla-6e-CpL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="2o6-8o-4J0" id="Dpz-6R-THD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMy-nz-QYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
