@@ -27,10 +27,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
-        // if we're on iOS 8, we wanna request auth. first...
-        if locationManager.respondsToSelector(Selector(locationManager.requestWhenInUseAuthorization())){
-            locationManager.requestWhenInUseAuthorization()
-        }
+        // we wanna request auth. first...
+       locationManager.requestWhenInUseAuthorization()
         
         // and start updates...
         locationManager.startUpdatingLocation()
@@ -82,13 +80,16 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         if currentLocation == nil {
             // alert the user then return.
             println("no current location!")
+
+            let alertController = UIAlertController(title: "No location found", message: "We're sorry but we can't find your current location at the moment. Please try another method.", preferredStyle: .Alert)
             
-            // UIAlertView for iOS 7 backward compatiblity.
-            let locationAlert = UIAlertView()
-            locationAlert.title = "No location found"
-            locationAlert.message = "We're sorry but we can't find your current location at the moment. Please try another method."
-            locationAlert.addButtonWithTitle("Okay")
-            locationAlert.show()
+            let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+                // nothing to do really.
+            }
+            
+            alertController.addAction(cancelAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
             
             return
         }

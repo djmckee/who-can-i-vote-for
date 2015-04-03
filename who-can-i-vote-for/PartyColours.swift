@@ -13,7 +13,7 @@ import UIKit
 class PartyColours {
     
     
-    class func colourForParty(partyName :String!) -> UIColor {
+    class func colourForParty(partyName :String!) -> UIColor {        
         if partyName.contains("Labour Party") {
             // Labour red
             return UIColor(red: (179.0000/255.0), green: (36.0000/255.0), blue: (28.0000/255.0), alpha: (1.0000))
