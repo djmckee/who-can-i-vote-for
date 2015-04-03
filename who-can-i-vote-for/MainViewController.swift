@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     var currentLocation:CLLocation!
     let locationManager = CLLocationManager()
     
@@ -34,17 +34,20 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         //APIManager.getConstituencyWithPostcode("NE17RU")
-        var myConstituency:Constituency = YourNextMPAPIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608)) { (c) -> () in
-            YourNextMPAPIManager.getCandidatesInConstituency(c!)
+        YourNextMPAPIManager.getConstituencyWithCoordinate(CLLocationCoordinate2DMake(54.9791871, -1.6146608)) { (c) -> () in
+            YourNextMPAPIManager.getCandidatesInConstituency(c!, {(candidates) -> ()
+                in
+                println(candidates)
+            })
             return
         }
-
+        
         //YourNextMPAPIManager.getCandidatesInConstituency(Constituency(constituencyId: 66055))
         
         
         //YourNextMPAPIManager.getConstituencies()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -83,7 +86,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         // grr. not much we can do.
     }
-
-
+    
+    
 }
 
