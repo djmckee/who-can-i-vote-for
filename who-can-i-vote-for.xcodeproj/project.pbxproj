@@ -26,6 +26,8 @@
 		BAC576F41ACEDE4600C21EB2 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC576F31ACEDE4600C21EB2 /* About.html */; };
 		BAC576F61ACEECE800C21EB2 /* CandidateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */; };
 		BAC576F81ACEED6100C21EB2 /* CandidateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */; };
+		BAF607AE1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF607AD1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift */; };
+		BAF607B01ACEF4050091D7CC /* ConstituencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF607AF1ACEF4050091D7CC /* ConstituencyTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +65,8 @@
 		BAC576F31ACEDE4600C21EB2 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
 		BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewCell.swift; sourceTree = "<group>"; };
 		BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateTableViewController.swift; sourceTree = "<group>"; };
+		BAF607AD1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstituencyTableViewCell.swift; sourceTree = "<group>"; };
+		BAF607AF1ACEF4050091D7CC /* ConstituencyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstituencyTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,15 +104,12 @@
 			children = (
 				BA6D497A1ACB2E4F003B004A /* Model */,
 				BA33B2B41ACAB4FF00170D29 /* AppDelegate.swift */,
-				BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */,
-				BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */,
+				BAF607B11ACEF40B0091D7CC /* View controllers */,
 				BA33B2B81ACAB4FF00170D29 /* Main.storyboard */,
 				BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */,
 				BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */,
 				BA33B2B21ACAB4FF00170D29 /* Supporting Files */,
 				BA6D497F1ACB2F7B003B004A /* String+ContainsExtension.swift */,
-				BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */,
-				BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */,
 			);
 			path = "who-can-i-vote-for";
 			sourceTree = "<group>";
@@ -165,6 +166,19 @@
 				BAC576EF1ACED64E00C21EB2 /* Alamofire */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		BAF607B11ACEF40B0091D7CC /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA33B2B61ACAB4FF00170D29 /* MainViewController.swift */,
+				BAC576F11ACEDDEE00C21EB2 /* AboutWebViewController.swift */,
+				BAC576F51ACEECE800C21EB2 /* CandidateTableViewCell.swift */,
+				BAC576F71ACEED6100C21EB2 /* CandidateTableViewController.swift */,
+				BAF607AD1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift */,
+				BAF607AF1ACEF4050091D7CC /* ConstituencyTableViewController.swift */,
+			);
+			name = "View controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +258,8 @@
 				BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */,
 				BAC576F81ACEED6100C21EB2 /* CandidateTableViewController.swift in Sources */,
 				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
+				BAF607AE1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift in Sources */,
+				BAF607B01ACEF4050091D7CC /* ConstituencyTableViewController.swift in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
 				BAC576EC1ACED28F00C21EB2 /* SwiftSpinner.swift in Sources */,
