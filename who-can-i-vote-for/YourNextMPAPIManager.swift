@@ -115,7 +115,6 @@ class YourNextMPAPIManager {
             
             let dataKeys:Array<String> = dataSet.keys.array;
             
-            // lol, range literals to the extreme... (subtracting 1 to avoid off by one!!)
             for key in dataKeys {
                 // get ID from the key...
                 var constituencyId:Int = key.toInt()!
