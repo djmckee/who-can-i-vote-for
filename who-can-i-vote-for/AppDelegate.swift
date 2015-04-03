@@ -39,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         reachability.startNotifier()
         
+        // Style our app-wide status bar
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+
+        
+        return true
+    }
+    
+    func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
         // check NSUserDefaults - if it's a first launch, schedule a notification to remind teh user to vote!
         let defaults = NSUserDefaults.standardUserDefaults()
         let launchedBeforeKey = "launchedBefore"
@@ -64,12 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // sync 'n save...
             defaults.synchronize()
         }
-        
-        // Style our app-wide status bar
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-
-        
-        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
