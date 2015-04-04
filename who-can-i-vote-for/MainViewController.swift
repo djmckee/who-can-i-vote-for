@@ -125,6 +125,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             // remove whitespace!!!!
             let postcode:String = searchTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
+            // basic invalid entry checking...
+            if countElements(postcode) < 5 {
+                // obviously not valid.
+                // (shortest postcode is 5 chars. according to http://www.answers.com/Q/What_is_the_shortest_postal_code_in_UK - and we've removed whitespace by this point too).
+                // alert user, give up, go home.
+                self.invalidConstituency()
+                return
+            }
             
             // start loading UI...
             SwiftSpinner.show("Locating constituency", animated: true)
