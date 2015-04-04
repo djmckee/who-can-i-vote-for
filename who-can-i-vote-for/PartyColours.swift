@@ -28,7 +28,7 @@ class PartyColours {
             return UIColor(red: (123.0000/255.0), green: (38.0000/255.0), blue: (159.0000/255.0), alpha: (1.0000))
         } else if partyName.contains("Scottish National Party") {
             // A light ish yellow
-            return UIColor(red: (207.0/255.0), green: (202.0/255.0), blue: (24.0/255.0), alpha: (1.0000))
+            return UIColor(red: (244.0/255.0), green: (208.0/255.0), blue: (63.0/255.0), alpha: (1.0000))
         } else if partyName.contains("Plaid Cymru") {
             // A darkish green.
             return UIColor(red: (50.0000/255.0), green: (116.0000/255.0), blue: (30.0000/255.0), alpha: (1.0000))
