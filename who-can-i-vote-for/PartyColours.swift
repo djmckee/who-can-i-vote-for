@@ -35,7 +35,10 @@ class PartyColours {
         } else if partyName.contains("Liberal Democrats"){
             // Lib dem yellow.
             return UIColor(red: (238.0000/255.0), green: (187.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
-        }else {
+        } else  if partyName.contains("Independent") {
+            // a grey.
+            return UIColor(red: (149.0000/255.0), green: (165.0000/255.0), blue: (166.0000/255.0), alpha: (1.0000))
+        } else {
             // a nice neuteral turquoise-ish.
             return UIColor(red: (21.0000/255.0), green: (178.0000/255.0), blue: (138.0000/255.0), alpha: (1.0000))
         }
