@@ -115,6 +115,8 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         isSearching = true
         searchBar.showsCancelButton = true
+
+        tableView?.reloadData()
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
