@@ -42,7 +42,7 @@ class CandidateTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CandidateCell", forIndexPath: indexPath) as CandidateTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CandidateCell", forIndexPath: indexPath) as! CandidateTableViewCell
 
         // Configure the cell...
         
