@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication!, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!) {
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         // check NSUserDefaults - if it's a first launch, schedule a notification to remind teh user to vote!
         let defaults = NSUserDefaults.standardUserDefaults()
         let launchedBeforeKey = "launchedBefore"

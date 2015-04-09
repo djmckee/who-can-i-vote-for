@@ -28,7 +28,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.navigationBar.barTintColor = self.view.backgroundColor
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as [NSObject : AnyObject]
         
         // fire up corelocation, making ourselves the delegate
         locationManager.delegate = self
@@ -120,13 +120,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // we need the text field/it's behaviour set up...
         let postcodeSearch = UIAlertAction(title: "Search", style: .Default) { (_) in
             // get text field
-            let searchTextField = alertController.textFields![0] as UITextField
+            let searchTextField = alertController.textFields![0] as! UITextField
             
             // remove whitespace!!!!
             let postcode:String = searchTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
             // basic invalid entry checking...
-            if countElements(postcode) < 5 {
+            if count(postcode) < 5 {
                 // obviously not valid.
                 // (shortest postcode is 5 chars. according to http://www.answers.com/Q/What_is_the_shortest_postal_code_in_UK - and we've removed whitespace by this point too).
                 // alert user, give up, go home.
@@ -232,7 +232,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         // last location is the most recent
         // (typecasting saves all)
-        currentLocation = locations.last as CLLocation
+        currentLocation = locations.last as! CLLocation
         //println("updated location to: " + currentLocation.description)
     }
     
@@ -246,13 +246,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // Pass the selected object to the new view controller.
         if segue.identifier == "constituenciesListSegue" {
             // pre-load constituencies in!
-            var viewController:ConstituencyTableViewController = segue.destinationViewController as ConstituencyTableViewController
+            var viewController:ConstituencyTableViewController = segue.destinationViewController as! ConstituencyTableViewController
             viewController.constituencyArray = self.constituenciesList
         }
         
         if segue.identifier == "candidatesListSegue" {
             // load candidates in
-            var viewController:CandidateTableViewController = segue.destinationViewController as CandidateTableViewController
+            var viewController:CandidateTableViewController = segue.destinationViewController as! CandidateTableViewController
             viewController.candidateArray = self.candidatesList
         }
     }
