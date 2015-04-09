@@ -29,7 +29,7 @@ class YourNextMPAPIManager {
                 
                 var dict:Dictionary<String, AnyObject>!
                 
-                dict = data as Dictionary<String, AnyObject>
+                dict = data as! Dictionary<String, AnyObject>
                 
                 if (dict["code"] != nil) {
                     println("error code present!")
@@ -39,9 +39,9 @@ class YourNextMPAPIManager {
                 } else {
                     //println("success")
                     // no error codes - get parsing...
-                    let shortcuts:Dictionary<String, AnyObject>! = dict["shortcuts"] as Dictionary<String, AnyObject>
+                    let shortcuts:Dictionary<String, AnyObject>! = dict["shortcuts"]as! Dictionary<String, AnyObject>
                     // typecasting makes it all okay...
-                    var wmc:Int = shortcuts["WMC"] as Int
+                    var wmc:Int = shortcuts["WMC"] as! Int
                     // id is now whatever we've retrieved it to be
                     id = wmc
                     
@@ -75,7 +75,7 @@ class YourNextMPAPIManager {
                 
                 var dict:Dictionary<String, AnyObject>!
                 
-                dict = data as Dictionary<String, AnyObject>
+                dict = data as! Dictionary<String, AnyObject>
                 
                 if (dict["code"] != nil) {
                     println("error code present!")
@@ -111,7 +111,7 @@ class YourNextMPAPIManager {
             //println("Data: ")
             //println(data)
             // data is a huge dictionary, where keys are id's, objects are dictionaries - these dictionaries contain a key "name" - a human readable name string...
-            let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = data as Dictionary<String, Dictionary<String, AnyObject>>
+            let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = data as! Dictionary<String, Dictionary<String, AnyObject>>
             
             let dataKeys:Array<String> = dataSet.keys.array;
             
@@ -121,7 +121,7 @@ class YourNextMPAPIManager {
                 
                 // get associated name info from the object dict's "name" key...
                 var dict:Dictionary<String, AnyObject> = dataSet[key]!
-                var constituencyName:String = dict["name"] as String
+                var constituencyName:String = dict["name"] as! String
                 
                 // instanciate our Constituency
                 var constituency:Constituency = Constituency(constituencyId: constituencyId)
@@ -158,15 +158,15 @@ class YourNextMPAPIManager {
             
             var standingCandidates:Array<Dictionary<String, AnyObject>> = Array<Dictionary<String, AnyObject>>();
             
-            var dataDict:Dictionary<String, AnyObject> = data as Dictionary<String, AnyObject>
-            var results = dataDict["result"] as Dictionary<String, AnyObject>
-            var memberships = results["memberships"] as Array<Dictionary<String, AnyObject>>
+            var dataDict:Dictionary<String, AnyObject> = data as! Dictionary<String, AnyObject>
+            var results = dataDict["result"] as! Dictionary<String, AnyObject>
+            var memberships = results["memberships"] as! Array<Dictionary<String, AnyObject>>
 
             
             for member in memberships {
-                var personInfo = member["person_id"] as Dictionary<String, AnyObject>
+                var personInfo = member["person_id"] as! Dictionary<String, AnyObject>
                 var standing: AnyObject? = personInfo["standing_in"]
-                var standingDict:NSDictionary = standing as NSDictionary
+                var standingDict:NSDictionary = standing as! NSDictionary
                 if (standingDict.objectForKey("2015") != nil) {
                     // also check for <null> strings, grrrr....
                     var standingDetails: AnyObject? = standingDict.objectForKey("2015")
@@ -176,7 +176,7 @@ class YourNextMPAPIManager {
                     }
                     
                     // check it's the right constituency too!
-                    var c = standingDetails?.objectForKey("post_id") as NSString
+                    var c = standingDetails?.objectForKey("post_id") as! NSString
                     
                     if c.integerValue != constituency.idNumber {
                         // they're not standing in our constituency for this election... ignore them!
@@ -185,39 +185,25 @@ class YourNextMPAPIManager {
                     
                     // they're standing this year!
                     // let's instanciate a candidate object for them, and add relevant information...
-                    var name = personInfo["name"] as String
-                    var partyMemberships = personInfo["party_memberships"] as NSDictionary
-                    var partyName = partyMemberships.objectForKey("2015")?.objectForKey("name") as NSString
-                    var candidate:Candidate = Candidate(name: name, party: partyName)
+                    var name = personInfo["name"] as! String
+                    var partyMemberships = personInfo["party_memberships"] as! NSDictionary
+                    var partyName = partyMemberships.objectForKey("2015")?.objectForKey("name") as! NSString
+                    var candidate:Candidate = Candidate(name: name, party: partyName as String)
 
                     array.append(candidate)
                 }
             }
             
             // grr, duplicates seem to be an issue...
-            var uniques:Array<Candidate> = Array<Candidate>();
+            var uniques:Set<Candidate> = Set<Candidate>();
             
-            // loop through each candidate checking uniqes doesn't already contain someone with their party - two candidates cannot stand for the same party in one consituency (right...)
-            for c:Candidate in array {
-
-                var shouldAdd:Bool = true;
-                
-                for x:Candidate in uniques {
-                    // is x's party equal to c's party?
-                    // (wow swift's string equality checking syntax is lovely).
-                    if x.party == c.party {
-                        // DO NOT allow more than one candidate for each party in the constituency...
-                        shouldAdd = false;
-                    }
-                }
-                // we've finished checking EVERY exisiting unique candidate, so we'll know if we can safely add...
-                if shouldAdd {
-                    uniques.append(c)
-                }
+            // add all candidates to the set - by definiition, sets do not allow duplicates - so the set will contain only uniques (thanks to the fact that the Candidate class implements Hashable/Equatable protocols)
+            for c in array {
+                uniques.insert(c)
             }
-            
-            // set our array to be the unique array...
-            array = uniques
+        
+            // construct an array from the set of uniques and make that our array...
+            array = Array<Candidate>(uniques)
             
             // okay, now we're gonna sort the array alphabetically to be fair (just by first name, keeping things sensible)...
             array = array.sorted({ $0.name < $1.name})

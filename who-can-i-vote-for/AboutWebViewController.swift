@@ -24,11 +24,11 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
         let pageContents = NSString(contentsOfURL: url!, encoding:NSUTF8StringEncoding, error: nil)
         
         // load it.
-        webView?.loadHTMLString(pageContents, baseURL: nil)
+        webView!.loadHTMLString(pageContents as! String, baseURL: nil)
 
     }
     
-    func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 
         if navigationType == UIWebViewNavigationType.LinkClicked {
             // don't load new pages! force them into safari... (after asking)
@@ -43,7 +43,7 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
             
             let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
                 // open in Safari...
-                UIApplication.sharedApplication().openURL(request.URL)
+                UIApplication.sharedApplication().openURL(request.URL!)
                 return
             }
             

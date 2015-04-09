@@ -58,7 +58,7 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ConstituencyCell", forIndexPath: indexPath) as ConstituencyTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ConstituencyCell", forIndexPath: indexPath) as! ConstituencyTableViewCell
 
         // Configure the cell...
         
@@ -107,7 +107,7 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         // Pass the selected object to the new view controller.
         if segue.identifier == "constituencyCandidateSegue" {
             // load candidates in
-            var viewController:CandidateTableViewController = segue.destinationViewController as CandidateTableViewController
+            var viewController:CandidateTableViewController = segue.destinationViewController as! CandidateTableViewController
             viewController.candidateArray = self.candidatesList
         }
     }
