@@ -195,29 +195,15 @@ class YourNextMPAPIManager {
             }
             
             // grr, duplicates seem to be an issue...
-            var uniques:Array<Candidate> = Array<Candidate>();
+            var uniques:Set<Candidate> = Set<Candidate>();
             
-            // loop through each candidate checking uniqes doesn't already contain someone with their party - two candidates cannot stand for the same party in one consituency (right...)
-            for c:Candidate in array {
-
-                var shouldAdd:Bool = true;
-                
-                for x:Candidate in uniques {
-                    // is x's party equal to c's party?
-                    // (wow swift's string equality checking syntax is lovely).
-                    if x.party == c.party {
-                        // DO NOT allow more than one candidate for each party in the constituency...
-                        shouldAdd = false;
-                    }
-                }
-                // we've finished checking EVERY exisiting unique candidate, so we'll know if we can safely add...
-                if shouldAdd {
-                    uniques.append(c)
-                }
+            // add all candidates to the set - by definiition, sets do not allow duplicates - so the set will contain only uniques (thanks to the fact that the Candidate class implements Hashable/Equatable protocols)
+            for c in array {
+                uniques.insert(c)
             }
-            
-            // set our array to be the unique array...
-            array = uniques
+        
+            // construct an array from the set of uniques and make that our array...
+            array = Array<Candidate>(uniques)
             
             // okay, now we're gonna sort the array alphabetically to be fair (just by first name, keeping things sensible)...
             array = array.sorted({ $0.name < $1.name})
