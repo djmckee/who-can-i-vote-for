@@ -22,6 +22,13 @@ class Candidate : Hashable {
         return PartyColours.colourForParty(self.party)
     }
     
+    // Compute the last name of the candicate and return it.
+    var lastName:String! {
+        var fullNameArr = name.componentsSeparatedByString(" ")
+        var lastName = fullNameArr[fullNameArr.count - 1]
+        return lastName
+    }
+    
     init(name:String, party:String){
         self.name = name
         self.party = party
