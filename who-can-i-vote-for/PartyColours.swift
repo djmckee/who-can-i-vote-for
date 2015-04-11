@@ -23,6 +23,14 @@ class PartyColours {
     class func colourForParty(partyName :String!) -> UIColor {
         // See what setting the user wants...
         var theme:ColourScheme = ColourScheme.FlatColours
+        
+        // check settings...
+        let defaults:NSUserDefaults = NSUserDefaults()
+        let useOfficialColours:Bool = defaults.boolForKey("useOfficialColourScheme")
+        
+        if useOfficialColours {
+            theme = ColourScheme.OfficiallyBoringColours
+        }
 
         if partyName == "All People's Party" {
             // APP Orange
