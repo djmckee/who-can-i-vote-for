@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let reachability = Reachability.reachabilityForInternetConnection()
         
         reachability.whenUnreachable = { reachability in
-            println("Internet is not reachable :'(")
+            //println("Internet is not reachable :'(")
             // alert the user...            
             let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .Alert)
             

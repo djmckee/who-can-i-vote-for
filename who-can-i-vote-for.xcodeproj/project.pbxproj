@@ -13,8 +13,6 @@
 		BA33B2BC1ACAB4FF00170D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BB1ACAB4FF00170D29 /* Images.xcassets */; };
 		BA33B2BF1ACAB4FF00170D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA33B2BD1ACAB4FF00170D29 /* LaunchScreen.xib */; };
 		BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA33B2E71ACAB71900170D29 /* Alamofire.swift */; };
-		BA6D49291ACB1977003B004A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49281ACB1977003B004A /* README.md */; };
-		BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = BA6D492A1ACB1995003B004A /* LICENSE.md */; };
 		BA6D49751ACB1B7C003B004A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49741ACB1B7C003B004A /* Reachability.swift */; };
 		BA6D49771ACB2C93003B004A /* YourNextMPAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49761ACB2C93003B004A /* YourNextMPAPIManager.swift */; };
 		BA6D49791ACB2D9D003B004A /* Constituency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D49781ACB2D9D003B004A /* Constituency.swift */; };
@@ -257,13 +255,11 @@
 				BA6D49801ACB2F7B003B004A /* String+ContainsExtension.swift in Sources */,
 				BAC576F21ACEDDEE00C21EB2 /* AboutWebViewController.swift in Sources */,
 				BAC576F81ACEED6100C21EB2 /* CandidateTableViewController.swift in Sources */,
-				BA6D492B1ACB1995003B004A /* LICENSE.md in Sources */,
 				BAF607AE1ACEF3F60091D7CC /* ConstituencyTableViewCell.swift in Sources */,
 				BAF607B01ACEF4050091D7CC /* ConstituencyTableViewController.swift in Sources */,
 				BA33B2E81ACAB71900170D29 /* Alamofire.swift in Sources */,
 				BA33B2B71ACAB4FF00170D29 /* MainViewController.swift in Sources */,
 				BAC576EC1ACED28F00C21EB2 /* SwiftSpinner.swift in Sources */,
-				BA6D49291ACB1977003B004A /* README.md in Sources */,
 				BA6D49791ACB2D9D003B004A /* Constituency.swift in Sources */,
 				BA6D497E1ACB2EA8003B004A /* PartyColours.swift in Sources */,
 				BA6D497C1ACB2E5C003B004A /* Candidate.swift in Sources */,
