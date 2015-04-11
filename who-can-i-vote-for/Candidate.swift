@@ -24,9 +24,17 @@ class Candidate : Hashable {
     
     // Compute the last name of the candicate and return it.
     var lastName:String! {
-        var fullNameArr = name.componentsSeparatedByString(" ")
-        var lastName = fullNameArr[fullNameArr.count - 1]
-        return lastName
+        var nameComponents:[String] = name.componentsSeparatedByString(" ")
+        
+        // do some simplistic edge case checking first - this could cause an app crash if it goes wrong... :s
+        if nameComponents.count > 1 {
+            // they have multiple names, find their last one and return it
+            var lastName:String = nameComponents[(nameComponents.count - 1)]
+            return lastName
+        } else {
+            // they only have one name for some reason - return it and give up.
+            return name
+        }
     }
     
     init(name:String, party:String){
