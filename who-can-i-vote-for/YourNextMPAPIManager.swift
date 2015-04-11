@@ -219,11 +219,13 @@ class YourNextMPAPIManager {
             // set our array to be the unique array...
             array = uniques
             
-            // okay, now we're gonna sort the array alphabetically to be fair (just by first name, keeping things sensible)...
-            array = array.sorted({ $0.name < $1.name})
+            // okay, now we're gonna sort the array alphabetically to be fair (just by last name, keeping things sensible)...
+            
+            array = array.sorted({ $0.lastName < $1.lastName })
             
             // return to the completion handler...
             completionHandler(array)
+            
         }
 
     }
