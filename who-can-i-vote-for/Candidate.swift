@@ -29,7 +29,7 @@ class Candidate : Hashable {
         // do some simplistic edge case checking first - this could cause an app crash if it goes wrong... :s
         if nameComponents.count > 1 {
             // they have multiple names, find their last one and return it
-            var lastName:String = nameComponents[(nameComponents.count - 1)]
+            var lastName:String = nameComponents.last!
             return lastName
         } else {
             // they only have one name for some reason - return it and give up.
