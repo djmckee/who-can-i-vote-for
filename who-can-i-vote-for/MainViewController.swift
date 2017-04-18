@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreLocation
+import SwiftSpinner
+import ReachabilitySwift
+import Alamofire
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -26,9 +29,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
         // Style it up
         self.navigationController?.navigationBar.barTintColor = self.view.backgroundColor
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as [NSObject : AnyObject]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as! [AnyHashable : Any] as [AnyHashable: Any] as! [String : Any]
         
         // fire up corelocation, making ourselves the delegate
         locationManager.delegate = self
@@ -45,14 +48,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // Hide navigation bar!!!!1
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         super.viewDidAppear(animated)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         // Show navigation bar (so other views can use it)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
@@ -64,12 +67,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func openWebsiteClicked(sender: UIButton) {
+    @IBAction func openWebsiteClicked(_ sender: UIButton) {
         // open http://yournextmp.com in the browser.
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://yournextmp.com")!)
+        UIApplication.shared.openURL(URL(string: "http://yournextmp.com")!)
     }
     
-    @IBAction func findByLocation(sender: UIButton) {
+    @IBAction func findByLocation(_ sender: UIButton) {
         // check connection...
         if !reachabilityCheck() {
             return
@@ -78,17 +81,17 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // okay first check we have a current location - if we don't, we can't find anything from nothing...
         if currentLocation == nil {
             // alert the user then return.
-            println("no current location!")
+            print("no current location!")
 
-            let alertController = UIAlertController(title: "No location found", message: "We're sorry but we can't find your current location at the moment. Please try another method.", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "No location found", message: "We're sorry but we can't find your current location at the moment. Please try another method.", preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+            let cancelAction = UIAlertAction(title: "Okay", style: .default) { (action) in
                 // nothing to do really.
             }
             
             alertController.addAction(cancelAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -104,29 +107,29 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         })
     }
     
-    @IBAction func findByPostcode(sender: UIButton) {
+    @IBAction func findByPostcode(_ sender: UIButton) {
         // check connection...
         if !reachabilityCheck() {
             return
         }
         
         // get postcode in an alert...
-        let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Enter Postcode", message: nil, preferredStyle: .alert)
         
         // and a simple cancel button too!
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(cancelAction)
         
         // we need the text field/it's behaviour set up...
-        let postcodeSearch = UIAlertAction(title: "Search", style: .Default) { (_) in
+        let postcodeSearch = UIAlertAction(title: "Search", style: .default) { (_) in
             // get text field
-            let searchTextField = alertController.textFields![0] as! UITextField
+            let searchTextField = alertController.textFields![0] 
             
             // remove whitespace!!!!
-            let postcode:String = searchTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            let postcode:String = (searchTextField.text?.replacingOccurrences(of: " ", with: ""))!
             
             // basic invalid entry checking...
-            if count(postcode) < 5 {
+            if postcode.characters.count < 5 {
                 // obviously not valid.
                 // (shortest postcode is 5 chars. according to http://www.answers.com/Q/What_is_the_shortest_postal_code_in_UK - and we've removed whitespace by this point too).
                 // alert user, give up, go home.
@@ -144,7 +147,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             })
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             // placeholder so the user knows what to do...
             textField.placeholder = "Enter postcode"
         }
@@ -152,11 +155,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         alertController.addAction(postcodeSearch)
 
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         
     }
     
-    @IBAction func findByConstituencyList(sender: UIButton) {
+    @IBAction func findByConstituencyList(_ sender: UIButton) {
         // check connection...
         if !reachabilityCheck() {
             return
@@ -172,23 +175,23 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             // load it! (via constituenciesListSegue)
             self.constituenciesList = c
-            self.performSegueWithIdentifier("constituenciesListSegue", sender: self)
+            self.performSegue(withIdentifier: "constituenciesListSegue", sender: self)
         }
     }
     
     
     func invalidConstituency() {
         // a generic 'not valid constituency' warning - ask the user to try again in an alert.
-        let alertController = UIAlertController(title: "Cannot find constituency", message: "We're sorry but we can't find your constituency. Please try another method of locating it, or choose it from the list instead.", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Cannot find constituency", message: "We're sorry but we can't find your constituency. Please try another method of locating it, or choose it from the list instead.", preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)        
+        let cancelAction = UIAlertAction(title: "Okay", style: .default, handler: nil)        
         
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func loadCandidatesForConstituency(c:Constituency){
+    func loadCandidatesForConstituency(_ c:Constituency){
         // see if it's valid...
         if c.idNumber == -1 {
             // invalid constituency!
@@ -206,53 +209,53 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             SwiftSpinner.hide()
             
             self.candidatesList = candidates
-            self.performSegueWithIdentifier("candidatesListSegue", sender: self)
+            self.performSegue(withIdentifier: "candidatesListSegue", sender: self)
             
         })
         
     }
 
     func reachabilityCheck() -> Bool{
-        if Reachability.reachabilityForInternetConnection().currentReachabilityStatus == Reachability.NetworkStatus.NotReachable {
+        if Reachability.init()?.currentReachabilityStatus == Reachability.NetworkStatus.notReachable {
             // noo!
             // alert the user and return false...
-            let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "No internet connection", message: "We're sorry but this app requires data from the Internet. Please check your Internet connection and try again.", preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
 
             alertController.addAction(cancelAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
         
         // must be reachable then...
         return true
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    @nonobjc func locationManager(_ manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         // last location is the most recent
         // (typecasting saves all)
         currentLocation = locations.last as! CLLocation
-        //println("updated location to: " + currentLocation.description)
+        //print("updated location to: " + currentLocation.description)
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // grr. not much we can do.
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "constituenciesListSegue" {
             // pre-load constituencies in!
-            var viewController:ConstituencyTableViewController = segue.destinationViewController as! ConstituencyTableViewController
+            let viewController:ConstituencyTableViewController = segue.destination as! ConstituencyTableViewController
             viewController.constituencyArray = self.constituenciesList
         }
         
         if segue.identifier == "candidatesListSegue" {
             // load candidates in
-            var viewController:CandidateTableViewController = segue.destinationViewController as! CandidateTableViewController
+            let viewController:CandidateTableViewController = segue.destination as! CandidateTableViewController
             viewController.candidateArray = self.candidatesList
         }
     }

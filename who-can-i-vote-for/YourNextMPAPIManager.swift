@@ -10,19 +10,22 @@
 
 import Foundation
 import CoreLocation
+import Alamofire
 
 class YourNextMPAPIManager {
 
-    class func getConstituencyWithPostcode(postcodeString: String!, completionHandler: (Constituency?) -> ()) -> Void {
+    class func getConstituencyWithPostcode(_ postcodeString: String!, completionHandler: @escaping (Constituency?) -> ()) -> Void {
         // concatenate our URL together.
         let urlString = "https://mapit.mysociety.org/postcode/" + postcodeString
         
         var id:Int!
         
         // perform request...
-        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
-            //println(data)
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
+            print("Data")
+            print(data)
         
+            /*
             if (data != nil) {
                 // have data - yay.
                 // check for error codes...
@@ -32,12 +35,12 @@ class YourNextMPAPIManager {
                 dict = data as! Dictionary<String, AnyObject>
                 
                 if (dict["code"] != nil) {
-                    println("error code present!")
+                    print("error code present!")
                     id = -1
                     completionHandler(Constituency(constituencyId: id))
 
                 } else {
-                    //println("success")
+                    //print("success")
                     // no error codes - get parsing...
                     let shortcuts:Dictionary<String, AnyObject>! = dict["shortcuts"]as! Dictionary<String, AnyObject>
                     // typecasting makes it all okay...
@@ -51,12 +54,14 @@ class YourNextMPAPIManager {
             // return a Constituency with an id of whatever we've parsed to the completion handler...
             completionHandler(Constituency(constituencyId: id))
 
+ */
         }
+ 
         
 
     }
     
-    class func getConstituencyWithCoordinate(coordinate : CLLocationCoordinate2D!, completionHandler: (Constituency?) -> ()) -> Void {
+    class func getConstituencyWithCoordinate(_ coordinate : CLLocationCoordinate2D!, completionHandler: @escaping (Constituency?) -> ()) -> Void {
         // concatenate our URL together.
         let latitude:Double = coordinate.latitude as Double
         let longitude:Double = coordinate.longitude as Double
@@ -67,7 +72,7 @@ class YourNextMPAPIManager {
         var id:Int!
         
         // perform request...
-        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
             
             if (data != nil) {
                 // have data - yay.
@@ -78,17 +83,17 @@ class YourNextMPAPIManager {
                 dict = data as! Dictionary<String, AnyObject>
                 
                 if (dict["code"] != nil) {
-                    println("error code present!")
+                    print("error code present!")
                     id = -1
                     completionHandler(Constituency(constituencyId: id))
 
                 } else {
-                    //println("success")
+                    //print("success")
                     // okay, the key is the ID, apparently...
-                    var idNumberStringRepresentation:String! = dict.keys.array[0]
-                    //println("idNumberStringRepresentation = " + idNumberStringRepresentation)
+                    var idNumberStringRepresentation:String! = dict.keys.first!
+                    //print("idNumberStringRepresentation = " + idNumberStringRepresentation)
                     // do a quick conversion...
-                    id = idNumberStringRepresentation.toInt()
+                    id = Int(idNumberStringRepresentation)
                     
                 }
         
@@ -100,31 +105,33 @@ class YourNextMPAPIManager {
         
     }
     
-    class func getConstituencies(completionHandler: (Array<Constituency>?) -> ()) -> Void {
+    class func getConstituencies(_ completionHandler: @escaping (Array<Constituency>?) -> ()) -> Void {
         // construct a blank mutable array...
         var array:Array<Constituency> = Array<Constituency>()
         
         let urlString = "http://mapit.mysociety.org/areas/WMC"
         
         // perform request...
-        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
-            //println("Data: ")
-            //println(data)
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
+            print("Data: ")
+            print(data)
             // data is a huge dictionary, where keys are id's, objects are dictionaries - these dictionaries contain a key "name" - a human readable name string...
+            
+            /*
             let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = data as! Dictionary<String, Dictionary<String, AnyObject>>
             
-            let dataKeys:Array<String> = dataSet.keys.array;
+            let dataKeys:Array<String> = dataSet.keys;
             
             for key in dataKeys {
                 // get ID from the key...
-                var constituencyId:Int = key.toInt()!
+                let constituencyId:Int = key.count
                 
                 // get associated name info from the object dict's "name" key...
                 var dict:Dictionary<String, AnyObject> = dataSet[key]!
-                var constituencyName:String = dict["name"] as! String
+                let constituencyName:String = dict["name"] as! String
                 
                 // instanciate our Constituency
-                var constituency:Constituency = Constituency(constituencyId: constituencyId)
+                let constituency:Constituency = Constituency(constituencyId: constituencyId)
                 
                 // set name too since we have one in this case...
                 constituency.name = constituencyName
@@ -132,19 +139,21 @@ class YourNextMPAPIManager {
                 // and add it to our array...
                 array.append(constituency)
                 
-                //println("Adding " + constituencyName)
+                //print("Adding " + constituencyName)
             }
             
             // sort the array alphabetically
-            array = array.sorted({ $0.name < $1.name})
+            array = array.sorted(by: { $0.name < $1.name})
 
             // return to the completion handler...
             completionHandler(array)
+ */
         }
+ 
 
     }
     
-    class func getCandidatesInConstituency(constituency: Constituency, completionHandler: (Array<Candidate>?) -> ()) -> Void {
+    class func getCandidatesInConstituency(_ constituency: Constituency, completionHandler: @escaping (Array<Candidate>?) -> ()) -> Void {
         // construct a blank mutable array...
         var array:Array<Candidate> = Array<Candidate>()
         
@@ -152,11 +161,13 @@ class YourNextMPAPIManager {
         let urlString:String = String(format: "https://yournextmp.popit.mysociety.org/api/v0.1/posts/%d?embed=membership.person", constituency.idNumber)
 
         // perform request...
-        request(Method.GET, urlString, parameters: nil, encoding: ParameterEncoding.URL).responseJSON { (request, response, data, error) -> Void in
-            //println("Data: ")
-            //println(data)
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
+            print("Data: ")
+            print(data)
             
-            var standingCandidates:Array<Dictionary<String, AnyObject>> = Array<Dictionary<String, AnyObject>>();
+            /*
+            
+            var standingCandidates:Array<Dictionary<String, AnyObject>> = Array<Dictionary<String, AnyObject>>()
             
             var dataDict:Dictionary<String, AnyObject> = data as! Dictionary<String, AnyObject>
             var results = dataDict["result"] as! Dictionary<String, AnyObject>
@@ -167,16 +178,16 @@ class YourNextMPAPIManager {
                 var personInfo = member["person_id"] as! Dictionary<String, AnyObject>
                 var standing: AnyObject? = personInfo["standing_in"]
                 var standingDict:NSDictionary = standing as! NSDictionary
-                if (standingDict.objectForKey("2015") != nil) {
+                if (standingDict.object(forKey: "2015") != nil) {
                     // also check for <null> strings, grrrr....
-                    var standingDetails: AnyObject? = standingDict.objectForKey("2015")
+                    var standingDetails: AnyObject? = standingDict.object(forKey: "2015") as AnyObject
                     if (standingDetails as? NSNull != nil){
-                        //println("should not be including " + member.description)
+                        //print("should not be including " + member.description)
                         continue
                     }
                     
                     // check it's the right constituency too!
-                    var c = standingDetails?.objectForKey("post_id") as! NSString
+                    var c = standingDetails?.object("post_id") as! NSString
                     
                     if c.integerValue != constituency.idNumber {
                         // they're not standing in our constituency for this election... ignore them!
@@ -187,7 +198,7 @@ class YourNextMPAPIManager {
                     // let's instanciate a candidate object for them, and add relevant information...
                     var name = personInfo["name"] as! String
                     var partyMemberships = personInfo["party_memberships"] as! NSDictionary
-                    var partyName = partyMemberships.objectForKey("2015")?.objectForKey("name") as! NSString
+                    var partyName = (partyMemberships.object(forKey: "2017") as AnyObject).object("name") as! NSString
                     var candidate:Candidate = Candidate(name: name, party: partyName as String)
 
                     array.append(candidate)
@@ -207,10 +218,12 @@ class YourNextMPAPIManager {
             
             // okay, now we're gonna sort the array alphabetically to be fair (just by last name, keeping things sensible)...
             
-            array = array.sorted({ $0.lastName < $1.lastName })
+            array = array.sorted(by: { $0.lastName < $1.lastName })
             
             // return to the completion handler...
             completionHandler(array)
+ 
+ */
             
         }
 

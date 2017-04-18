@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6812B72C4D74E9303BADE1A3FB394B19264B41E9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AA023C9090003DBB3E1EA20D4BD55D419734D589" : 0,
+    "6812B72C4D74E9303BADE1A3FB394B19264B41E9" : 0,
+    "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2" : 0,
+    "67620B5EFA902936DF04070AF595B76AB0333747" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "49D66D6E-5F5D-4E28-9264-9D1BDFD71EC1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AA023C9090003DBB3E1EA20D4BD55D419734D589" : "who-can-i-vote-for\/SwiftSpinner\/",
+    "6812B72C4D74E9303BADE1A3FB394B19264B41E9" : "who-can-i-vote-for\/",
+    "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2" : "who-can-i-vote-for\/Reachability\/",
+    "67620B5EFA902936DF04070AF595B76AB0333747" : "who-can-i-vote-for\/Alamofire\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "who-can-i-vote-for",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "who-can-i-vote-for.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Alamofire\/Alamofire.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "67620B5EFA902936DF04070AF595B76AB0333747"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/djmckee\/who-can-i-vote-for.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6812B72C4D74E9303BADE1A3FB394B19264B41E9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:icanzilb\/SwiftSpinner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA023C9090003DBB3E1EA20D4BD55D419734D589"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ashleymills\/Reachability.swift",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE6F11D2B0F7EBDD3A2A4B2F7B7F7393B556F9B2"
+    }
+  ]
+}

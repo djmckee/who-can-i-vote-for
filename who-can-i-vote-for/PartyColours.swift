@@ -11,8 +11,8 @@ import UIKit
 
 // An enum that defines the different colour settings
 enum ColourScheme {
-    case FlatColours
-    case OfficiallyBoringColours
+    case flatColours
+    case officiallyBoringColours
 }
 
 // some constant political party colours... (cool colours from http://flatuicolors.com/ )
@@ -20,16 +20,16 @@ class PartyColours {
     
     //a b c d e f g h i j k l m n o p q r s t u v w x y z
     //s t u v w x y z
-    class func colourForParty(partyName :String!) -> UIColor {
+    class func colourForParty(_ partyName :String!) -> UIColor {
         // See what setting the user wants...
-        var theme:ColourScheme = ColourScheme.FlatColours
+        var theme:ColourScheme = ColourScheme.flatColours
         
         // check settings...
-        let defaults:NSUserDefaults = NSUserDefaults()
-        let useOfficialColours:Bool = defaults.boolForKey("useOfficialColourScheme")
+        let defaults:UserDefaults = UserDefaults()
+        let useOfficialColours:Bool = defaults.bool(forKey: "useOfficialColourScheme")
         
         if useOfficialColours {
-            theme = ColourScheme.OfficiallyBoringColours
+            theme = ColourScheme.officiallyBoringColours
         }
 
         if partyName == "All People's Party" {
@@ -37,14 +37,14 @@ class PartyColours {
             return UIColor(red: (230.0000/255.0), green: (126.0000/255.0), blue: (34.0000/255.0), alpha: (1.0000))
         } else if partyName == "Alliance - Alliance Party of Northern Ireland" {
             // APNI Yellow
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (245.0000/255.0), green: (171.0000/255.0), blue: (53.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (246.0000/255.0), green: (203.0000/255.0), blue: (47.0000/255.0), alpha: (1.0000))
             }
         } else if partyName == "Alliance for Green Socialism" {
             // AGS Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (63.0000/255.0), green: (195.0000/255.0), blue: (47.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (168.0000/255.0), blue: (107.0000/255.0), alpha: (1.0000))
@@ -52,7 +52,7 @@ class PartyColours {
             
         } else if partyName == "Al-Zebabist Nation of Ooog" {
             // AZNO Black
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (51.0000/255.0), green: (51.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (0.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -68,7 +68,7 @@ class PartyColours {
             
         } else if partyName == "Cannabis is Safer than Alcohol" {
             // Cannabis Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (77.0000/255.0), green: (175.0000/255.0), blue: (124.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (112.0000/255.0), green: (144.0000/255.0), blue: (95.0000/255.0), alpha: (1.0000))
@@ -80,7 +80,7 @@ class PartyColours {
             
         } else if partyName == "Christian Peoples Alliance" {
             // Christian Violet
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (154.0000/255.0), green: (18.0000/255.0), blue: (179.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (170.0000/255.0), green: (0.0000/255.0), blue: (170.0000/255.0), alpha: (1.0000))
@@ -88,7 +88,7 @@ class PartyColours {
             
         } else if partyName == "Class War" {
             // Class War Black
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (51.0000/255.0), green: (51.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (0.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -96,7 +96,7 @@ class PartyColours {
             
         } else if partyName == "Communist Party of Britain" {
             // Communist Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (192.0000/255.0), green: (57.0000/255.0), blue: (43.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (238.0000/255.0), green: (28.0000/255.0), blue: (37.0000/255.0), alpha: (1.0000))
@@ -113,7 +113,7 @@ class PartyColours {
         } else if partyName == "Conservative Party" || partyName == "Conservative and Unionist Party" {
             // Same party has two names in different parts of the UK... because.
             // Tory Blue
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (29.0000/255.0), green: (106.0000/255.0), blue: (173.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (135.0000/255.0), blue: (220.0000/255.0), alpha: (1.0000))
@@ -121,7 +121,7 @@ class PartyColours {
             
         } else if partyName == "Democratic Unionist Party - D.U.P." {
             // Moderate Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (226.0000/255.0), green: (106.0000/255.0), blue: (106.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (212.0000/255.0), green: (106.0000/255.0), blue: (76.0000/255.0), alpha: (1.0000))
@@ -129,7 +129,7 @@ class PartyColours {
             
         } else if partyName == "Democratic Reform Party" {
             // DRP Pink
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (219.0000/255.0), green: (10.0000/255.0), blue: (91.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (204.0000/255.0), green: (34.0000/255.0), blue: (123.0000/255.0), alpha: (1.0000))
@@ -142,7 +142,7 @@ class PartyColours {
             
         } else if partyName == "Free United Kingdom Party" {
             // Free United Kingdom Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (150.0000/255.0), green: (40.0000/255.0), blue: (27.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (163.0000/255.0), green: (2.0000/255.0), blue: (2.0000/255.0), alpha: (1.0000))
@@ -150,7 +150,7 @@ class PartyColours {
         
         } else if partyName == "Green Party" {
             // Green Party Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (30.0000/255.0), green: (164.0000/255.0), blue: (75.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (106.0000/255.0), green: (176.0000/255.0), blue: (35.0000/255.0), alpha: (1.0000))
@@ -158,7 +158,7 @@ class PartyColours {
             
         } else if partyName == "Guildford Greenbelt Group" {
             // Guildford Greenbelt Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (38.0000/255.0), green: (166.0000/255.0), blue: (91.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (76.0000/255.0), green: (157.0000/255.0), blue: (42.0000/255.0), alpha: (1.0000))
@@ -166,7 +166,7 @@ class PartyColours {
             
         } else if partyName == "Independent" {
             // Indep grey
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (149.0000/255.0), green: (165.0000/255.0), blue: (166.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (221.0000/255.0), green: (221.0000/255.0), blue: (221.0000/255.0), alpha: (1.0000))
@@ -174,7 +174,7 @@ class PartyColours {
             
         } else if partyName == "Labour Party" {
             // Labour Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (179.0000/255.0), green: (36.0000/255.0), blue: (28.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (178.0000/255.0), green: (34.0000/255.0), blue: (34.0000/255.0), alpha: (1.0000))
@@ -182,7 +182,7 @@ class PartyColours {
             
         } else if partyName == "Left Unity" {
             // Left Unity Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (242.0000/255.0), green: (38.0000/255.0), blue: (19.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (225.0000/255.0), green: (7.0000/255.0), blue: (7.0000/255.0), alpha: (1.0000))
@@ -190,7 +190,7 @@ class PartyColours {
         
         } else if partyName == "Lewisham People Before Profit" {
             //LPBP Violet
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (145.0000/255.0), green: (61.0000/255.0), blue: (136.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (140.0000/255.0), green: (66.0000/255.0), blue: (137.0000/255.0), alpha: (1.0000))
@@ -198,7 +198,7 @@ class PartyColours {
    
         } else if partyName == "Liberal Democrats" {
             // Lib dem yellow.
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (238.0000/255.0), green: (187.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (253.0000/255.0), green: (187.0000/255.0), blue: (48.0000/255.0), alpha: (1.0000))
@@ -210,7 +210,7 @@ class PartyColours {
             
         } else if partyName == "Lincolnshire Independents Lincolnshire First" {
             // LILF Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (38.0000/255.0), green: (166.0000/255.0), blue: (91.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (128.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -218,7 +218,7 @@ class PartyColours {
             
         } else if partyName == "Mebyon Kernow - The Party for Cornwall" {
             // MKTPC Yellow
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (249.0000/255.0), green: (191.0000/255.0), blue: (59.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (204.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -226,7 +226,7 @@ class PartyColours {
             
         } else if partyName == "National Health Action Party" {
             // Blue
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (65.0000/255.0), green: (131.0000/255.0), blue: (215.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (0.0000/255.0), blue: (255.0000/255.0), alpha: (1.0000))
@@ -234,7 +234,7 @@ class PartyColours {
             
         } else if partyName == "National Liberal Party - True Liberalism" {
             // NLP Orange
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (249.0000/255.0), green: (105.0000/255.0), blue: (14.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (102.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -242,7 +242,7 @@ class PartyColours {
             
         } else if partyName == "Official Monster Raving Loony Party" {
             // Monster Raving Looney Pink
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (246.0000/255.0), green: (36.0000/255.0), blue: (89.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red:	(255.0000/255.0), green: (105.0000/255.0), blue: (180.0000/255.0), alpha:(1.0000))
@@ -254,7 +254,7 @@ class PartyColours {
             
         } else if partyName == "Patriotic Socialist Party" {
             // Kinda a red party colour
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (192.0000/255.0), green: (57.0000/255.0), blue: (43.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (238.0000/255.0), green: (28.0000/255.0), blue: (37.0000/255.0), alpha: (1.0000))
@@ -266,7 +266,7 @@ class PartyColours {
             
         } else if partyName == "Plaid Cymru - The Party of Wales" {
             // A darkish green.
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (50.0000/255.0), green: (116.0000/255.0), blue: (30.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (129.0000/255.0), blue: (66.0000/255.0), alpha: (1.0000))
@@ -274,7 +274,7 @@ class PartyColours {
             
         } else if partyName == "Scottish National Party (SNP)" {
             // SNP Yellow
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (244.0000/255.0), green: (208.0000/255.0), blue: (63.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (255.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -282,7 +282,7 @@ class PartyColours {
             
         } else if partyName == "Scottish Green Party" {
             // Scottish Green Party
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (30.0000/255.0), green: (164.0000/255.0), blue: (75.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (153.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -290,7 +290,7 @@ class PartyColours {
             
         } else if partyName == "SDLP (Social Democratic & Labour Party)" {
             // SDLP Neon Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (135.0000/255.0), green: (211.0000/255.0), blue: (124.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (153.0000/255.0), green: (255.0000/255.0), blue: (102.0000/255.0), alpha: (1.0000))
@@ -298,7 +298,7 @@ class PartyColours {
             
         } else if partyName == "Sinn Féin" {
             // Sinn Féin Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (38.0000/255.0), green: (166.0000/255.0), blue: (91.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (136.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -306,7 +306,7 @@ class PartyColours {
             
         } else if partyName == "Socialist Labour Party" {
             // Socialist Labour Party Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (192.0000/255.0), green: (57.0000/255.0), blue: (43.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (238.0000/255.0), green: (28.0000/255.0), blue: (37.0000/255.0), alpha: (1.0000))
@@ -314,7 +314,7 @@ class PartyColours {
             
         } else if partyName == "Socialist Equality Party" {
             // Socialist Equality Party Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (150.0000/255.0), green: (40.0000/255.0), blue: (27.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (150.0000/255.0), green: (0.0000/255.0), blue: (24.0000/255.0), alpha: (1.0000))
@@ -322,14 +322,14 @@ class PartyColours {
             
         } else if partyName == "The 30-50 Coalition" {
             // 30-50 Green
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (46.0000/255.0), green: (204.0000/255.0), blue: (113.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (46.0000/255.0), green: (195.0000/255.0), blue: (47.0000/255.0), alpha: (1.0000))
             }
             
         } else if partyName == "The Above and Beyond Party" {
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (51.0000/255.0), green: (51.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (0.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -337,7 +337,7 @@ class PartyColours {
             
         } else if partyName == "The Democratic Party" {
             // The Democratic Party Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (51.0000/255.0), green: (51.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (242.0000/255.0), green: (38.0000/255.0), blue: (19.0000/255.0), alpha: (1.0000))
@@ -353,7 +353,7 @@ class PartyColours {
             
         } else if partyName == "The North East Party" {
             // NEP Red/Brown
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (150.0000/255.0), green: (40.0000/255.0), blue: (27.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (128.0000/255.0), green: (0.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -361,7 +361,7 @@ class PartyColours {
             
         } else if partyName == "The Peace Party - Non-violence, Justice, Environment" {
             // Peace Party Salmon
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (210.0000/255.0), green: (82.0000/255.0), blue: (127.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (218.0000/255.0), green: (112.0000/255.0), blue: (214.0000/255.0), alpha: (1.0000))
@@ -373,7 +373,7 @@ class PartyColours {
             
         } else if partyName == "The Respect Party" {
             // Respect Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (217.0000/255.0), green: (30.0000/255.0), blue: (24.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (51.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -381,7 +381,7 @@ class PartyColours {
             
         } else if partyName == "The Socialist Party of Great Britain" {
             // Socialist Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (242.0000/255.0), green: (38.0000/255.0), blue: (19.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (220.0000/255.0), green: (36.0000/255.0), blue: (31.0000/255.0), alpha: (1.0000))
@@ -389,7 +389,7 @@ class PartyColours {
             
         } else if partyName == "The Workers Party" {
             // Workers Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (217.0000/255.0), green: (30.0000/255.0), blue: (24.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (215.0000/255.0), green: (61.0000/255.0), blue: (61.0000/255.0), alpha: (1.0000))
@@ -401,7 +401,7 @@ class PartyColours {
             
         } else if partyName == "Trade Unionist and Socialist Coalition" {
             // TUSC Red
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (192.0000/255.0), green: (57.0000/255.0), blue: (43.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (0.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -413,7 +413,7 @@ class PartyColours {
             
         } else if partyName == "UK Independence Party (UKIP)" || partyName == "UK Independence Party (UK I P)" {
             // UKIP Purple
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (123.0000/255.0), green: (38.0000/255.0), blue: (159.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (112.0000/255.0), green: (20.0000/255.0), blue: (122.0000/255.0), alpha: (1.0000))
@@ -421,7 +421,7 @@ class PartyColours {
             
         } else if partyName == "Ulster Unionist Party" {
             // UUP Blue
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (89.0000/255.0), green: (171.0000/255.0), blue: (227.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (153.0000/255.0), green: (153.0000/255.0), blue: (255.0000/255.0), alpha: (1.0000))
@@ -433,7 +433,7 @@ class PartyColours {
             
         } else if partyName == "Young People's Party YPP" {
             // YPP Yellow
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (247.0000/255.0), green: (202.0000/255.0), blue: (24.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (255.0000/255.0), green: (255.0000/255.0), blue: (0.0000/255.0), alpha: (1.0000))
@@ -441,7 +441,7 @@ class PartyColours {
             
         } else if partyName == "We Are The Reality Party" {
             // Reality Party Black
-            if theme == ColourScheme.FlatColours {
+            if theme == ColourScheme.flatColours {
                 return UIColor(red: (51.0000/255.0), green: (51.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))
             } else {
                 return UIColor(red: (0.0000/255.0), green: (0.0000/255.0), blue: (51.0000/255.0), alpha: (1.0000))

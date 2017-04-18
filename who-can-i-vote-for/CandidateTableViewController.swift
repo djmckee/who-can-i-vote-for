@@ -31,26 +31,26 @@ class CandidateTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         return candidateArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CandidateCell", forIndexPath: indexPath) as! CandidateTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CandidateCell", for: indexPath) as! CandidateTableViewCell
 
         // Configure the cell...
         
         cell.nameLabel?.text = candidateArray[indexPath.row].name
-        cell.partyLabel?.text = candidateArray[indexPath.row].party.uppercaseString
+        cell.partyLabel?.text = candidateArray[indexPath.row].party.uppercased()
         cell.contentView.backgroundColor = candidateArray[indexPath.row].colour
         
-        //println(candidateArray[indexPath.row].party)
+        //print(candidateArray[indexPath.row].party)
         
         return cell
     }

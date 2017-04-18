@@ -11,8 +11,8 @@ import Foundation
 extension String {
     
     // check if the string contains otherString, return accordingly.
-    func contains(otherString:String!) -> Bool {
-        if self.rangeOfString(otherString) != nil{
+    func contains(_ otherString:String!) -> Bool {
+        if self.range(of: otherString) != nil{
             return true
         } else {
             return false

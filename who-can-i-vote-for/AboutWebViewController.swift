@@ -18,38 +18,46 @@ class AboutWebViewController: UIViewController, UIWebViewDelegate {
 
         // Do any additional setup after loading the view.
         // Load our about html file into the webview...
-        let url = NSBundle.mainBundle().URLForResource("About", withExtension:"html")
+        let url = Bundle.main.url(forResource: "About", withExtension:"html")
         
-        // get HTML.
-        let pageContents = NSString(contentsOfURL: url!, encoding:NSUTF8StringEncoding, error: nil)
         
-        // load it.
-        webView!.loadHTMLString(pageContents as! String, baseURL: nil)
+        do {
+            // get HTML.
+            let pageContents = try NSString(contentsOf: url!, encoding: String.Encoding.utf8.rawValue)
+            
+            // load it.
+            webView!.loadHTMLString(pageContents as String, baseURL: nil)
 
+            
+        } catch {
+            
+        }
+        
+        
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 
-        if navigationType == UIWebViewNavigationType.LinkClicked {
+        if navigationType == UIWebViewNavigationType.linkClicked {
             // don't load new pages! force them into safari... (after asking)
             
-            let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Open in Safari?", message: "Would you like to open this link in Safari?", preferredStyle: .alert)
             
             
-            let cancelAction = UIAlertAction(title: "No", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
 
             alertController.addAction(cancelAction)
             
             
-            let openAction = UIAlertAction(title: "Yes", style: .Default) { (action) in
+            let openAction = UIAlertAction(title: "Yes", style: .default) { (action) in
                 // open in Safari...
-                UIApplication.sharedApplication().openURL(request.URL!)
+                UIApplication.shared.openURL(request.url!)
                 return
             }
             
             alertController.addAction(openAction)
 
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
             
             return false

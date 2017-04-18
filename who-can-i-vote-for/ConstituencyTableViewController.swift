@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftSpinner
+import ReachabilitySwift
 
 class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
 
@@ -26,7 +28,7 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
 
 
         // very cunning search bar cancel button  colour reset trick from http://stackoverflow.com/questions/2787481/uisearchbar-cancel-button-color
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: UIControlState())
 
     }
 
@@ -35,7 +37,7 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         finishSearching()
         
         super.viewWillDisappear(animated)
@@ -43,12 +45,12 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: - Table view data source
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         if isSearching {
             return searchingArray.count
@@ -57,8 +59,8 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         return constituencyArray.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ConstituencyCell", forIndexPath: indexPath) as! ConstituencyTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ConstituencyCell", for: indexPath) as! ConstituencyTableViewCell
 
         // Configure the cell...
         
@@ -73,9 +75,9 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         // de-select!
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         // get tapped constituency...
         var chosen:Constituency
@@ -86,7 +88,7 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
             chosen = constituencyArray[indexPath.row]
         }
         
-        //println("chosen " + chosen.name)
+        //print("chosen " + chosen.name)
         
         // get candidates... update loading UI too
         SwiftSpinner.show("Finding candidates", animated: true)
@@ -97,29 +99,29 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
             SwiftSpinner.hide()
             
             self.candidatesList = candidates
-            self.performSegueWithIdentifier("constituencyCandidateSegue", sender: self)
+            self.performSegue(withIdentifier: "constituencyCandidateSegue", sender: self)
             
         })
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "constituencyCandidateSegue" {
             // load candidates in
-            var viewController:CandidateTableViewController = segue.destinationViewController as! CandidateTableViewController
+            let viewController:CandidateTableViewController = segue.destination as! CandidateTableViewController
             viewController.candidateArray = self.candidatesList
         }
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         isSearching = true
         searchBar.showsCancelButton = true
 
         tableView?.reloadData()
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         isSearching = false
         searchBar.showsCancelButton = false
 
@@ -136,27 +138,27 @@ class ConstituencyTableViewController: UIViewController, UISearchBarDelegate {
         tableView?.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         finishSearching()
 
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         isSearching = true
         searchBar.showsCancelButton = true
         
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // filter results to what's contained within the array that matches seach terms...
         searchingArray = constituencyArray.filter({ (c) -> Bool in
             let nameString:NSString = NSString(string: c.name)
-            let range = nameString.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            let range = nameString.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
         
         // re-sort to ensure alphabetic arrangement is maintained.
-        searchingArray = searchingArray.sorted({ $0.name < $1.name})
+        searchingArray = searchingArray.sorted(by: { $0.name < $1.name})
         
         // and reload our table...
         tableView?.reloadData()
