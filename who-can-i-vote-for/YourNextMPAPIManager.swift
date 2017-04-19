@@ -112,42 +112,49 @@ class YourNextMPAPIManager {
         let urlString = "http://mapit.mysociety.org/areas/WMC"
         
         // perform request...
-        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
-            print("Data: ")
-            print(data)
-            // data is a huge dictionary, where keys are id's, objects are dictionaries - these dictionaries contain a key "name" - a human readable name string...
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            print(response.request)  // original URL request
+            print(response.response) // HTTP URL response
+            print(response.data)     // server data
+            print(response.result)   // result of response serialization
             
-            /*
-            let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = data as! Dictionary<String, Dictionary<String, AnyObject>>
-            
-            let dataKeys:Array<String> = dataSet.keys;
-            
-            for key in dataKeys {
-                // get ID from the key...
-                let constituencyId:Int = key.count
+            if let JSON = response.result.value {
+                // data is a huge dictionary, where keys are id's, objects are dictionaries - these dictionaries contain a key "name" - a human readable name string...
+                print("JSON: \(JSON)")
+                let dataSet:Dictionary<String, Dictionary<String, AnyObject>> = JSON as! Dictionary<String, Dictionary<String, AnyObject>>
                 
-                // get associated name info from the object dict's "name" key...
-                var dict:Dictionary<String, AnyObject> = dataSet[key]!
-                let constituencyName:String = dict["name"] as! String
+                let dataKeys = dataSet.keys
                 
-                // instanciate our Constituency
-                let constituency:Constituency = Constituency(constituencyId: constituencyId)
+                for key in dataKeys {
+                    // get ID from the key...
+                    let constituencyId:Int = Int(key)!
+                    
+                    // get associated name info from the object dict's "name" key...
+                    var dict:Dictionary<String, AnyObject> = dataSet[key]!
+                    let constituencyName:String = dict["name"] as! String
+                    
+                    // instanciate our Constituency
+                    let constituency:Constituency = Constituency(constituencyId: constituencyId)
+                    
+                    // set name too since we have one in this case...
+                    constituency.name = constituencyName
+                    
+                    // and add it to our array...
+                    array.append(constituency)
+                    
+                    print("Adding " + constituencyName)
+                }
                 
-                // set name too since we have one in this case...
-                constituency.name = constituencyName
+                // sort the array alphabetically
+                array = array.sorted(by: { $0.name < $1.name})
                 
-                // and add it to our array...
-                array.append(constituency)
-                
-                //print("Adding " + constituencyName)
+                // return to the completion handler...
+                completionHandler(array)
+
+
             }
             
-            // sort the array alphabetically
-            array = array.sorted(by: { $0.name < $1.name})
-
-            // return to the completion handler...
-            completionHandler(array)
- */
+            
         }
  
 
