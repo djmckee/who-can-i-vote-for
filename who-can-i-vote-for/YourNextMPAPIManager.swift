@@ -21,9 +21,17 @@ class YourNextMPAPIManager {
         var id:Int!
         
         // perform request...
-        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
-            print("Data")
-            print(data)
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            print(response.request ?? "No HTTP request? wtf.")  // original URL request
+            print(response.response ?? "No HTTP response") // HTTP URL response
+            print(response.data ?? "No data")     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                
+            }
         
             /*
             if (data != nil) {
@@ -72,8 +80,19 @@ class YourNextMPAPIManager {
         var id:Int!
         
         // perform request...
-        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            print(response.request ?? "No HTTP request? wtf.")  // original URL request
+            print(response.response ?? "No HTTP response") // HTTP URL response
+            print(response.data ?? "No data")     // server data
+            print(response.result)   // result of response serialization
             
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                
+            }
+            
+            /*
             if (data != nil) {
                 // have data - yay.
                 // check for error codes...
@@ -99,7 +118,7 @@ class YourNextMPAPIManager {
         
                 // return a Constituency with an id of whatever we've parsed...
                 completionHandler(Constituency(constituencyId: id))
-            }
+            }*/
             
         }
         
@@ -113,9 +132,9 @@ class YourNextMPAPIManager {
         
         // perform request...
         request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
+            print(response.request ?? "No HTTP request? wtf.")  // original URL request
+            print(response.response ?? "No HTTP response") // HTTP URL response
+            print(response.data ?? "No data")     // server data
             print(response.result)   // result of response serialization
             
             if let JSON = response.result.value {
@@ -168,9 +187,17 @@ class YourNextMPAPIManager {
         let urlString:String = String(format: "https://yournextmp.popit.mysociety.org/api/v0.1/posts/%d?embed=membership.person", constituency.idNumber)
 
         // perform request...
-        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (data) -> Void in
-            print("Data: ")
-            print(data)
+        request(urlString, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            print(response.request ?? "No HTTP request? wtf.")  // original URL request
+            print(response.response ?? "No HTTP response") // HTTP URL response
+            print(response.data ?? "No data")     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                
+            }
             
             /*
             
