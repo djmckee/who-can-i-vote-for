@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let localNotification:UILocalNotification = UILocalNotification()
             // appropriate body
             
-            localNotification.alertBody = "Remember to vote today!"
+            localNotification.alertBody = "☑️❗️ Remember to vote today!"
             
             // UNIX timestamp for 7am GMT (so 8am local UK time) on June 8th is 1496905200 - thanks http://www.epochconverter.com/
             localNotification.fireDate = Date(timeIntervalSince1970: 1496905200)
