@@ -52,9 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        // check NSUserDefaults - if it's a first launch, schedule a notification to remind teh user to vote!
+        // check NSUserDefaults - if it's a first launch for this election year, schedule a notification to remind teh user to vote!
         let defaults = UserDefaults.standard
-        let launchedBeforeKey = "launchedBefore"
+        let launchedBeforeKey = "launchedBeforeElection2017"
         let launchedBefore:Bool = defaults.bool(forKey: launchedBeforeKey)
         
         // if they haven't launched us before, let's try and notify!
@@ -65,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             localNotification.alertBody = "Remember to vote today!"
             
-            // UNIX timestamp for 8am GMT (so 9am local UK time) on May 7th is 1430985600 - thanks http://www.epochconverter.com/
-            localNotification.fireDate = Date(timeIntervalSince1970: 1430985600)
+            // UNIX timestamp for 7am GMT (so 8am local UK time) on June 8th is 1496905200 - thanks http://www.epochconverter.com/
+            localNotification.fireDate = Date(timeIntervalSince1970: 1496905200)
             
             // let's schedule this...
             UIApplication.shared.scheduleLocalNotification(localNotification)
