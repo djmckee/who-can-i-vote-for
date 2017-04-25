@@ -186,7 +186,7 @@ class YourNextMPAPIManager {
                 
                 var dataDict = JSON as! Dictionary<String, AnyObject>
                 
-                var memberships = dataDict["memberships"] as! Array<Dictionary<String, AnyObject>>
+                let memberships = dataDict["memberships"] as! Array<Dictionary<String, AnyObject>>
                 
                 for member in memberships {
                     print("membership = ")
@@ -198,7 +198,7 @@ class YourNextMPAPIManager {
                     var election = member["election"] as! Dictionary<String, AnyObject>
                     print("election = ")
                     print(election)
-                    var year = election["id"] as! String
+                    let year = election["id"] as! String
                     
                     if year == YEAR_STRING {
                         print("found candidate for this year: " + String(describing: personInfo))
@@ -208,9 +208,12 @@ class YourNextMPAPIManager {
                                 // they're standing this year!
                                 // let's instanciate a candidate object for them, and add relevant information...
                                 let name = personInfo["name"] as! String
+                                let pId = personInfo["id"] as! Int
+                        
                                 let partyMemberships = member["on_behalf_of"] as! NSDictionary
                                 let partyName = partyMemberships.object(forKey: "name") as! NSString
-                                let candidate:Candidate = Candidate(name: name, party: partyName as String)
+                        
+                                let candidate:Candidate = Candidate(name: name, party: partyName as String, id: pId)
                                 
                                 array.append(candidate)
                         

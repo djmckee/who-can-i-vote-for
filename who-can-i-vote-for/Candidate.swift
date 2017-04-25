@@ -17,6 +17,8 @@ class Candidate : Hashable {
     // their party
     let party:String!
     
+    let id: Int!
+    
     // compute their colour from party name and return it.
     var colour:UIColor {
         return PartyColours.colourForParty(self.party)
@@ -37,9 +39,11 @@ class Candidate : Hashable {
         }
     }
     
-    init(name:String, party:String){
+    init(name:String, party:String, id: Int){
         self.name = name
         self.party = party
+        self.id = id
+        
     }
     
     // implementing Hashable protocol (so we can use Sets 'n stuff)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CandidateTableViewController: UITableViewController {
     
@@ -53,6 +54,16 @@ class CandidateTableViewController: UITableViewController {
         //print(candidateArray[indexPath.row].party)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Open https://whocanivotefor.co.uk/person/<candidate id> in an SFSafariViewController
+        let id = candidateArray[indexPath.row].id!
+        
+        let url = "https://whocanivotefor.co.uk/person/" + String(stringInterpolationSegment: id)
+        
+        let safariViewController = SFSafariViewController(url: NSURL(string: url)! as URL)
+        self.present(safariViewController, animated: true, completion: nil)
     }
 
    

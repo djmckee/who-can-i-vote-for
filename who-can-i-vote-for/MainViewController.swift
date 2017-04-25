@@ -33,7 +33,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.navigationBar.barTintColor = self.view.backgroundColor
         self.navigationController?.navigationBar.tintColor = UIColor.white
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Futura-Medium", size: 22)!]
-        self.navigationController?.navigationBar.titleTextAttributes = titleDict as! [AnyHashable : Any] as [AnyHashable: Any] as! [String : Any]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as! [AnyHashable : Any] as [AnyHashable: Any] as? [String : Any]
         
         // fire up corelocation, making ourselves the delegate
         locationManager.delegate = self
