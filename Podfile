@@ -9,6 +9,8 @@ target 'who-can-i-vote-for' do
   pod 'ReachabilitySwift', '~> 3'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftSpinner', '~> 1.2.1'
+  pod 'PermissionScope'
+
 
 
 end

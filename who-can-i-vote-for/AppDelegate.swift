@@ -19,9 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Register for notifications...
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types:UIUserNotificationType.alert, categories: nil))
-        
+
         do {
             // Start reachability warnings (so that they're app-wide)
             let reachability = Reachability.init()!
@@ -52,31 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        // check NSUserDefaults - if it's a first launch for this election year, schedule a notification to remind teh user to vote!
-        let defaults = UserDefaults.standard
-        let launchedBeforeKey = "launchedBeforeElection2017"
-        let launchedBefore:Bool = defaults.bool(forKey: launchedBeforeKey)
         
-        // if they haven't launched us before, let's try and notify!
-        if !launchedBefore {
-            // create our notification
-            let localNotification:UILocalNotification = UILocalNotification()
-            // appropriate body
-            
-            localNotification.alertBody = "☑️❗️ Remember to vote today!"
-            
-            // UNIX timestamp for 7am GMT (so 8am local UK time) on June 8th is 1496905200 - thanks http://www.epochconverter.com/
-            localNotification.fireDate = Date(timeIntervalSince1970: 1496905200)
-            
-            // let's schedule this...
-            UIApplication.shared.scheduleLocalNotification(localNotification)
-            
-            // and set the key so they don't get bombarded!
-            defaults.set(true, forKey:launchedBeforeKey)
-            
-            // sync 'n save...
-            defaults.synchronize()
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

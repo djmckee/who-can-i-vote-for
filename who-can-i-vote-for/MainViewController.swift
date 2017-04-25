@@ -11,11 +11,13 @@ import CoreLocation
 import SwiftSpinner
 import ReachabilitySwift
 import Alamofire
+import PermissionScope
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
     
     var currentLocation:CLLocation!
     let locationManager = CLLocationManager()
+    let pscope = PermissionScope()
 
     
     // instance variables to facilitate object passing between seuges nicely.
@@ -40,12 +42,81 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
-        // we wanna request auth. first...
-        locationManager.requestWhenInUseAuthorization()
         
-        // and start updates...
-        locationManager.startUpdatingLocation()
         
+        let brandColor = self.view.backgroundColor!
+        pscope.closeButtonTextColor = brandColor
+        pscope.permissionButtonTextColor = brandColor
+        pscope.permissionButtonBorderColor = brandColor
+        pscope.authorizedButtonColor = brandColor
+        pscope.unauthorizedButtonColor = brandColor
+        
+        let fontName = "Futura-Medium"
+        let labelFont = UIFont(name: fontName, size: 15.0)!
+        let bolderFont = UIFont(name: fontName, size: 16.0)!
+        let biggerBolderFont = UIFont(name: fontName, size: 19.0)!
+        
+        pscope.labelFont = labelFont
+        pscope.bodyLabel.font = labelFont
+        pscope.buttonFont = bolderFont
+        pscope.headerLabel.font = biggerBolderFont
+        
+        
+        pscope.headerLabel.text? = "Get started"
+        pscope.bodyLabel.numberOfLines = 3
+        
+        // Set up permissions
+        pscope.addPermission(NotificationsPermission(),
+                             message: "To remind you on Election Day.")
+        pscope.addPermission(LocationWhileInUsePermission(),
+                             message: "Used to find your local MP.")
+        
+        // Show dialog with callbacks
+        pscope.show({ finished, results in
+            print("got results \(results)")
+            
+            // and start updates...
+            self.locationManager.startUpdatingLocation()
+            
+            
+            // Register for notifications...
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types:UIUserNotificationType.alert, categories: nil))
+            
+            self.scheduleReminder()
+            
+            
+        }, cancelled: { (results) -> Void in
+            print("thing was cancelled")
+        })
+        
+    }
+    
+    func scheduleReminder() {
+        // check NSUserDefaults - if it's a first launch for this election year, schedule a notification to remind teh user to vote!
+        let defaults = UserDefaults.standard
+        let launchedBeforeKey = "launchedBeforeElection2017"
+        let launchedBefore:Bool = defaults.bool(forKey: launchedBeforeKey)
+        
+        // if they haven't launched us before, let's try and notify!
+        if !launchedBefore {
+            // create our notification
+            let localNotification:UILocalNotification = UILocalNotification()
+            // appropriate body
+            
+            localNotification.alertBody = "☑️❗️ Remember to vote today!"
+            
+            // UNIX timestamp for 7am GMT (so 8am local UK time) on June 8th is 1496905200 - thanks http://www.epochconverter.com/
+            localNotification.fireDate = Date(timeIntervalSince1970: 1496905200)
+            
+            // let's schedule this...
+            UIApplication.shared.scheduleLocalNotification(localNotification)
+            
+            // and set the key so they don't get bombarded!
+            defaults.set(true, forKey:launchedBeforeKey)
+            
+            // sync 'n save...
+            defaults.synchronize()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +147,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // check connection...
         if !reachabilityCheck() {
             return
+        }
+        
+        if let newLoc = self.locationManager.location {
+            self.currentLocation = newLoc
         }
         
         // okay first check we have a current location - if we don't, we can't find anything from nothing...
@@ -142,6 +217,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             // now search...
             YourNextMPAPIManager.getConstituencyWithPostcode(postcode, completionHandler: { (c) -> () in
+                print("completed getConstituencyWithPostcode")
                 self.loadCandidatesForConstituency(c!)
                 
             })
@@ -236,11 +312,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         // last location is the most recent
         // (typecasting saves all)
         currentLocation = locations.last as! CLLocation
-        //print("updated location to: " + currentLocation.description)
+        print("updated location to: " + currentLocation.description)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // grr. not much we can do.
+        print("location error: " + error.localizedDescription)
+
     }
     
     
