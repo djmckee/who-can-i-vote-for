@@ -1,8 +1,8 @@
 //
 //  YourNextMPAPIManager.swift
 //  who-can-i-vote-for
-//  A Swift API wrapper for the YourNextMP.com API
-//  (all data/endpoints provided by https://yournextmp.com/help/api )
+//  A Swift API wrapper for the Democracy Club API
+//  (all data/endpoints provided by https://candidates.democracyclub.org.uk/help/api )
 //
 //  Created by Dylan McKee on 31/03/2015.
 //  Copyright (c) 2015 djmckee. All rights reserved.
