@@ -139,7 +139,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func openWebsiteClicked(_ sender: UIButton) {
-        // open http://yournextmp.com in the browser.
+        // open https://candidates.democracyclub.org.uk in the browser.
         UIApplication.shared.openURL(URL(string: "https://candidates.democracyclub.org.uk/")!)
     }
     
